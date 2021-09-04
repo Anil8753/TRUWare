@@ -1,12 +1,12 @@
 fabric:
   cas:
-    - "ca1.org0.truware.com"
-    - "ca1.org1.truware.com"
+    - "ca1.truware.com"
+    - "ca1.crwc.com"
   peers:
-    - "peer1.org0.truware.com"
-    - "peer2.org0.truware.com"
-    - "peer1.org1.truware.com"
-    - "peer2.org1.truware.com"
+    - "peer1.truware.com"
+    - "peer2.truware.com"
+    - "peer1.crwc.com"
+    - "peer2.crwc.com"
   orderers:
     - "orderer1.truware.com"
     - "orderer2.truware.com"
