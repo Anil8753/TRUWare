@@ -1,6 +1,6 @@
 # TRUWare
 A platform for efficient and cost effective usage of Warehouses.
-Permissioned blockchain is the heart of this platform. It is implemented using Hyperledger Fabic Blockchain technology, used Hyperledger Fabric version is **2.3.x**.
+Permissioned blockchain is the heart of this platform. It is implemented using Hyperledger Fabic blockchain technology, used Hyperledger Fabric version is **2.3.x**.
 <br/>
 Read more about the [HyperLedger Fabric.](https://www.hyperledger.org/)
 
@@ -30,3 +30,5 @@ It consists of the following components
   
 ## Test Application
   Fully functional test application is available in [testapp](./testapp/go/) directory. It is implemented in Go programing language.
+  It provides the web interface for [abstore chaincode](https://github.com/hyperledger/fabric-samples/blob/main/chaincode/abstore/go/abstore.go)
+  
