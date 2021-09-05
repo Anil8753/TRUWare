@@ -1,1 +1,6 @@
+*.DS_Store
+*.vscode
 network/vars/
+testapp/go/vendor/
+testapp/go/connection/
+

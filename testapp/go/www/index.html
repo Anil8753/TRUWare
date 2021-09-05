@@ -1,0 +1,261 @@
+<html>
+
+<head>
+    <title>Test Application</title>
+</head>
+
+<style>
+    .container {
+        margin: 10px;
+        display: flex;
+    }
+
+    .item {
+        background-color: antiquewhite;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        width: 100%;
+    }
+
+    .ctrl {
+        margin: 2px;
+    }
+</style>
+
+<script>
+    async function query() {
+        let party = document.getElementById('id-party-query').value;
+        if (party !== "a" && party !== "b") {
+            alert(`Please enter 'a' or 'b'`);
+            return;
+        }
+
+        showSpinner();
+        const url = `http://localhost:8081/api/query?party=${party}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        document.getElementById('id-query-result').innerText = (`Amount: ${data.amount}`);
+        hideSpinner();
+    }
+
+    function submit_txn() {
+        showSpinner();
+        let party1 = document.getElementById('id-party1-txn').value;
+        let party2 = document.getElementById('id-party2-txn').value;
+        let amount = document.getElementById('id-amount-txn').value;
+
+        const url = `http://localhost:8081/api/submit_txn`;
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                sender: party1,
+                receiver: party2,
+                amount: parseInt(amount, 10),
+            })
+        }).then(result => {
+
+            hideSpinner();
+
+            if (result.status !== 200) {
+                alert(`Transaction failed: \n ${result.statusText}`);
+            } else {
+                alert('Transaction submitted successfully!')
+            }
+            console.log("Completed with result:", result);
+        }).catch(err => {
+            hideSpinner();
+            alert(JSON.stringify(err))
+        });
+    }
+
+    function query_history() {
+        alert('not implemented yet');
+    }
+
+    function showSpinner() {
+        var loadingDiv = document.getElementById('loading');
+        loadingDiv.style.visibility = 'visible';
+    }
+
+    function hideSpinner() {
+        var loadingDiv = document.getElementById('loading');
+        loadingDiv.style.visibility = 'hidden';
+    }
+
+</script>
+
+<body>
+
+    <div class="container">
+        <h3 style="margin-left: 20px;">Test Application</h3>
+    </div>
+    <hr>
+    <div class="container">
+
+        <div class="item">
+            <div style="display: flex; flex-direction: column;">
+                <h5>Query party `a' or 'b'</h5>
+                <input class="ctrl" id="id-party-query">
+                <button class="ctrl" onclick="query()">Query</button>
+                <span class="ctrl" id="id-query-result"></span>
+            </div>
+        </div>
+
+        <!-- <hr> -->
+        <div class="item">
+            <div style="display: flex; flex-direction: column;">
+                <h5>Transaction between parties 'a' or 'b'</h5>
+                <input class="ctrl" id="id-party1-txn" placeholder="Sender">
+                <input class="ctrl" id="id-party2-txn" placeholder="Receiver">
+                <input class="ctrl" id="id-amount-txn" placeholder="Enter amount">
+                <button class="ctrl" onclick="submit_txn()">Submit Transaction</button>
+            </div>
+        </div>
+
+        <!-- <hr> -->
+        <div class="item">
+            <div style="display: flex; flex-direction: column;">
+                <h5>Query Ledger history</h5>
+                <button class="ctrl" onclick="query_history()">Query History</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<div id="loading" class="loading">
+    Loading&#8230;
+</div>
+
+</html>
+
+<style>
+    /* Absolute Center Spinner */
+    .loading {
+        position: fixed;
+        z-index: 999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        visibility: hidden;
+    }
+
+    /* Transparent Overlay */
+    .loading:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    /* :not(:required) hides these rules from IE9 and below */
+    .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .loading:not(:required):after {
+        content: '';
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 1500ms infinite linear;
+        -moz-animation: spinner 1500ms infinite linear;
+        -ms-animation: spinner 1500ms infinite linear;
+        -o-animation: spinner 1500ms infinite linear;
+        animation: spinner 1500ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    }
+
+    /* Animation */
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-moz-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-o-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
