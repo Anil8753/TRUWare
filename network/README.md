@@ -17,8 +17,6 @@ If client app is inside of the containers' network
 ```
 It brings up the network with channel name ```mychannel``` and chaincode ```siimple``` which is balance transfer between party ```a``` and party ```b```.
 
-<br/>
-
 Bring down the network
 ```
 ./minifab down -o admin.truware.com
@@ -28,9 +26,8 @@ Clean everything
 ```
 ./minifab cleanup -o admin.truware.com
 ```
-<br/>
 
-# Hyperledger Explorer
+## Hyperledger Explorer
 
 Hyperledger Explorer integration
 ```
@@ -47,7 +44,6 @@ Bring down Hyperledger Explorer
 ```
 ./minifab explorerdown
 ```
-<br/>
 
-# Start up portainer web ui
+## Start up portainer web ui
 While you are running your Fabric network, you can use Portainer web based management to see and interact with your running network. To start up Portainer web user interface, simply run ```./minifab portainerup``` command, to shut it down, run ```./minifab portainerdown``` command
