@@ -29,5 +29,4 @@ It consists of the following components
   [scripts](./scripts) is the directory contains all the required scripts to build and run the application.
   
 ## Test Application
-  <br/>
   Fully functional test application is available in [testapp](./testapp/go/) directory. It is implemented in Go programing language.
