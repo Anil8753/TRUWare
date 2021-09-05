@@ -15,6 +15,9 @@ If client app is inside of the containers' network
 ```
 ./minifab up -o admin.truware.com
 ```
+It brings up the network with channel name ```mychannel``` and chaincode ```siimple``` which is balance transfer between party ```a``` and party ```b```.
+
+<br/>
 
 Bring down the network
 ```
