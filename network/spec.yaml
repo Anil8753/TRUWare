@@ -1,12 +1,12 @@
 fabric:
   cas:
-    - "ca1.truware.com"
-    - "ca1.crwc.com"
+    - "ca1.admin.truware.com"
+    - "ca1.crwc.truware.com"
   peers:
-    - "peer1.truware.com"
-    - "peer2.truware.com"
-    - "peer1.crwc.com"
-    - "peer2.crwc.com"
+    - "peer1.admin.truware.com"
+    - "peer2.admin.truware.com"
+    - "peer1.crwc.truware.com"
+    - "peer2.crwc.truware.com"
   orderers:
     - "orderer1.truware.com"
     - "orderer2.truware.com"
@@ -24,7 +24,7 @@ fabric:
   ### the goproxy in China area
   # goproxy: "https://goproxy.cn,direct"
   ### set the endpoint address to override the automatically detected IP address
-  endpoint_address: 127.0.0.1
+  #endpoint_address: 127.0.0.1
   ### set the docker network name to override the automatically generated name.
   netname: "truware_network"
   ### set the extra optins for docker run command
