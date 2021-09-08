@@ -12,6 +12,7 @@ func (s *WarehouseContract) BookArea(
 	ctx contractapi.TransactionContextInterface,
 	id string,
 	bookingArea int,
+	duration int,
 ) error {
 
 	asset, err := s.ReadAsset(ctx, id)
@@ -32,7 +33,12 @@ func (s *WarehouseContract) BookArea(
 		)
 	}
 
-	asset.Bookings = append(asset.Bookings, Booking{BookerID: "xyz", Area: bookingArea})
+	asset.Bookings = append(asset.Bookings, Booking{
+		BookerID: "xyz",
+		Area:     bookingArea,
+		Duration: duration,
+	})
+
 	asset.BookedArea += bookingArea
 
 	assetJSON, err := json.Marshal(asset)

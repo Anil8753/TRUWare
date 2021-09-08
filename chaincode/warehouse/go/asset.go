@@ -24,4 +24,5 @@ type Booking struct {
 	ID       string
 	BookerID string
 	Area     int
+	Duration int
 }
