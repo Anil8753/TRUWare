@@ -8,52 +8,50 @@ import (
 )
 
 // CreateAsset issues a new asset to the world state with given details.
+// {
+// 	"OwnerID": "123",
+// 	"ID": "xyz",
+// 	"Org": "warebox",
+// 	"Name": "warebox inc",
+// 	"Address": "212/13 Ganga Nagar, Kengeri",
+// 	"TotalArea": 5000,
+// 	"BookedArea": 0,
+// 	"Rate": 100,
+// 	"Postion": {
+// 	  "Latitude": 100,
+// 	  "Longitude": 290.67
+// 	},
+// 	"Status": 0,
+// 	"Bookings": []
+// }
 func (s *WarehouseContract) CreateAsset(
 	ctx contractapi.TransactionContextInterface,
-	id string,
-	org string,
-	name string,
-	address string,
-	totalArea int,
-	bookedArea int,
-	rate int,
+	assetJSON string,
 ) error {
 
-	exists, err := s.AssetExists(ctx, id)
+	asset := Asset{}
+	if err := json.Unmarshal([]byte(assetJSON), &asset); err != nil {
+		return fmt.Errorf("invalid create assetJSON string. \n%s", assetJSON)
+	}
+
+	exists, err := s.AssetExists(ctx, asset.ID)
 	if err != nil {
 		return err
 	}
 	if exists {
-		return fmt.Errorf("the asset %s already exists", id)
+		return fmt.Errorf("the asset '%s' already exists", asset.ID)
 	}
 
-	if totalArea < bookedArea {
+	if asset.TotalArea < asset.BookedArea {
 		return fmt.Errorf(
 			"occupied area cannot be more than total area. occupied area: %d, total area: %d",
-			bookedArea, totalArea,
+			asset.TotalArea, asset.BookedArea,
 		)
 	}
 
-	if rate < 1 {
-		return fmt.Errorf("rate cannot be less than 1. Rate: %d", rate)
+	if asset.Rate < 1 {
+		return fmt.Errorf("rate cannot be less than 1. Rate: %d", asset.Rate)
 	}
 
-	asset := Asset{
-		OwnerID:    "123",
-		ID:         id,
-		Org:        org,
-		Name:       name,
-		Address:    address,
-		TotalArea:  totalArea,
-		BookedArea: bookedArea,
-		Rate:       rate,
-		Status:     Operational,
-	}
-
-	assetJSON, err := json.Marshal(asset)
-	if err != nil {
-		return err
-	}
-
-	return ctx.GetStub().PutState(id, assetJSON)
+	return ctx.GetStub().PutState(asset.ID, []byte(assetJSON))
 }
