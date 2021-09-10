@@ -24,14 +24,14 @@ func (s *WarehouseContract) UpdateTotalArea(
 		return fmt.Errorf("the asset %s does not exist", id)
 	}
 
-	if asset.BookedArea < totalArea {
+	if asset.General.AllocatedArea < totalArea {
 		return fmt.Errorf(
 			"total area (%d) cannot be less than occupied area (%d)",
-			totalArea, asset.BookedArea,
+			totalArea, asset.General.AllocatedArea,
 		)
 	}
 
-	asset.TotalArea = totalArea
+	asset.General.TotalArea = totalArea
 
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {

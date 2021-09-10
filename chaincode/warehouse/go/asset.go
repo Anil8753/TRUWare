@@ -1,18 +1,12 @@
 package main
 
 type Asset struct {
-	ID         string
-	OwnerID    string
-	Org        string
-	Name       string
-	Address    string
-	TotalArea  int
-	BookedArea int
-	Rate       int
-
-	Postion  WarehousePostion
-	Status   WarehouseStatus
-	Bookings []Booking
+	Id          string           `json:"id"`
+	OwnerId     string           `json:"ownerId"`
+	General     GeneralInfo      `json:"generalInfo"`
+	Postion     WarehousePostion `json:"postion"`
+	Status      WarehouseStatus  `json:"status"`
+	Allocations []Allocation     `json:"allocations"`
 }
 
 type WarehouseStatus int
@@ -22,14 +16,24 @@ const (
 	NonOperational
 )
 
-type WarehousePostion struct {
-	Latitude  float64
-	Longitude float64
+type GeneralInfo struct {
+	Org           string `json:"org"`
+	Name          string `json:"name"`
+	Address       string `json:"address"`
+	Details       string `json:"details"`
+	Rate          int    `json:"rate"`
+	TotalArea     int    `json:"totalArea"`
+	AllocatedArea int    `json:"allocatedArea"`
 }
 
-type Booking struct {
-	ID       string
-	BookerID string
-	Area     int
-	Duration int
+type WarehousePostion struct {
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
+}
+
+type Allocation struct {
+	Id       string `json:"name"`
+	ClientId string `json:"clientId"`
+	Area     int    `json:"area"`
+	Duration int    `json:"duration"`
 }

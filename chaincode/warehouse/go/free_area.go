@@ -11,7 +11,7 @@ import (
 func (s *WarehouseContract) FreeArea(
 	ctx contractapi.TransactionContextInterface,
 	id string,
-	bookingID string,
+	allocationId string,
 ) error {
 
 	asset, err := s.ReadAsset(ctx, id)
@@ -26,20 +26,20 @@ func (s *WarehouseContract) FreeArea(
 	index := -1
 	bookingArea := 0
 
-	for _, booking := range asset.Bookings {
-		if booking.ID == bookingID {
-			bookingArea = booking.Area
+	for _, allocation := range asset.Allocations {
+		if allocation.Id == allocationId {
+			bookingArea = allocation.Area
 			break
 		}
 		index++
 	}
 
 	if index != -1 {
-		return fmt.Errorf("booking ID not found: %s", bookingID)
+		return fmt.Errorf("booking ID not found: %s", allocationId)
 	}
 
-	asset.BookedArea -= bookingArea
-	asset.Bookings = append(asset.Bookings[:index], asset.Bookings[index+1:]...)
+	asset.General.AllocatedArea -= bookingArea
+	asset.Allocations = append(asset.Allocations[:index], asset.Allocations[index+1:]...)
 
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {

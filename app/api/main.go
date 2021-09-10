@@ -4,23 +4,20 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Anil8753/truware/app/api/warehouse"
 	"github.com/gorilla/mux"
 )
 
 func main() {
 
-	h := warehouse.GetHandler()
+	r := mux.NewRouter()
+	r.Handle("/", http.FileServer(http.Dir("./www")))
+	RegisterWarehouseRoutes(r)
 
-	router := mux.NewRouter()
+	port := ":8081"
+	fmt.Printf("\nStarting API server at port %s \n", port)
 
-	router.Handle("/", http.FileServer(http.Dir("./www")))
-	router.HandleFunc("/api/warehouse", h.Create).Methods("POST")
-	router.HandleFunc("/api/warehouse/{id}", h.Read).Methods("GET")
-
-	err := http.ListenAndServe(":8081", router)
+	err := http.ListenAndServe(port, r)
 	if err != nil {
 		fmt.Println(err)
 	}
-
 }

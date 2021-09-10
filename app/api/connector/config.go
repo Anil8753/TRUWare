@@ -23,7 +23,7 @@ func NewConfig() *Config {
 		panic(err)
 	}
 
-	log.Println(string(data))
+	log.Printf("Connection config file \n%s\n", string(data))
 	return &cfg
 }
 

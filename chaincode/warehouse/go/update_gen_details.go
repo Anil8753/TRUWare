@@ -25,9 +25,9 @@ func (s *WarehouseContract) UpdateGeneralDetails(
 		return fmt.Errorf("the asset %s does not exist", id)
 	}
 
-	asset.Org = org
-	asset.Name = name
-	asset.Address = address
+	asset.General.Org = org
+	asset.General.Name = name
+	asset.General.Address = address
 
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {

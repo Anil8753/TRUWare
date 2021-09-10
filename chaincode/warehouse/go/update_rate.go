@@ -27,7 +27,7 @@ func (s *WarehouseContract) UpdateRate(
 		return fmt.Errorf("rate cannot be less than 1. Enterer rate: %d", rate)
 	}
 
-	asset.Rate = rate
+	asset.General.Rate = rate
 
 	assetJSON, err := json.Marshal(asset)
 	if err != nil {
