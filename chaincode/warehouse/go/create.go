@@ -13,7 +13,6 @@ import (
 // 	"id":"100",
 // 	"status":0,
 // 	"generalInfo":{
-// 	   "org":"rwc",
 // 	   "name":"Rail Warehouse Corporation",
 // 	   "phone": "9988776655",
 // 	   "email": "support.rwc.com",
@@ -56,7 +55,6 @@ func (s *WarehouseContract) CreateAsset(
 	if asset.Id == "" ||
 		asset.Postion.Latitude == 0 ||
 		asset.Postion.Longitude == 0 ||
-		asset.General.Org == "" ||
 		asset.General.Address == "" ||
 		asset.General.Name == "" ||
 		asset.General.TotalArea == 0 ||
@@ -66,7 +64,6 @@ func (s *WarehouseContract) CreateAsset(
 							asset.Id, 
 							asset.Postion.Latitude,
 							asset.Postion.Longitude,
-							asset.General.Org,
 							asset.General.Address,
 							asset.General.Name,
 							asset.General.TotalArea,
@@ -85,6 +82,10 @@ func (s *WarehouseContract) CreateAsset(
 	}
 
 	asset.OwnerId = identity
+
+	// if asset.Allocations == nil {
+	// 	asset.Allocations = make([]Allocation, 0)
+	// }
 
 	bytes, err := json.Marshal(asset)
 	if err != nil {

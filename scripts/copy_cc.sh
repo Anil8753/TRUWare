@@ -1,3 +1,4 @@
 #!/bin/bash
 
-cp -R ../chaincode/$1/go ../network/vars/chaincode/$1/
+rm -rf ../network/vars/chaincode/$1/go
+cp -R ../chaincode/$1/go ../network/vars/chaincode/$1/go

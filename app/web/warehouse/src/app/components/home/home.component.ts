@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AssetComponent } from '../asset/asset.component';
+import { Asset, GeneralInfo, Postion } from 'src/app/components/asset/asset';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,8 @@ import { AssetComponent } from '../asset/asset.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  asset: Asset;
 
   constructor(
     private modalService: NgbModal,
@@ -18,12 +21,13 @@ export class HomeComponent implements OnInit {
 
   onClick() {
 
-    const modalRef = this.modalService.open(AssetComponent);
+    const modalRef = this.modalService.open(AssetComponent, { backdrop: 'static'});
     modalRef.componentInstance.name = 'World';
 
     modalRef.result
-    .then(reson=>{
-      alert(reson);
+    .then((asset: Asset)=>{
+      if (asset)
+        this.asset = asset;
     })
     .catch(e=>{
       alert(JSON.stringify(e));
