@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [[ $1 == 'up' ]]
+then
+    echo
+    echo "-----------------------------------------------------------------------------"
+    echo "Executing command: ./minifab netup -e true -s couchdb -o admin.truware.com"
+    echo "-----------------------------------------------------------------------------"
+    echo
+
+    cd ../network
+    ./minifab netup -e true -s couchdb -o admin.truware.com
+
+elif [[ $1 == 'down' ]]
+then
+    echo
+    echo "------------------------------------------------------"
+    echo "Executing command: ./minifab down"
+    echo "------------------------------------------------------"
+    echo
+
+    cd ../network
+    ./minifab down
+
+elif [[ $1 == 'cleanup' ]]
+then
+    echo
+    echo "------------------------------------------------------"
+    echo "Executing command: ./minifab cleanup"
+    echo "------------------------------------------------------"
+    echo
+
+    cd ../network
+    ./minifab cleanup
+
+else
+    echo "Plese enter the command line"
+    echo " * up - make the network up"
+    echo " * down - make the network down"
+    echo " * cleanup - cleans everything including data and nodes"
+fi

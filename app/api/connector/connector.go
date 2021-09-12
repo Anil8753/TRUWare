@@ -8,8 +8,8 @@ import (
 	"github.com/hyperledger/fabric-sdk-go/pkg/gateway"
 )
 
-// GetContract returns the contract
-func GetContract(channelName string, chaincodeName string) (*gateway.Contract, error) {
+// GetNetwork returns the contract
+func GetNetwork(channelName string) (*gateway.Network, error) {
 
 	cfg := NewConfig()
 
@@ -40,5 +40,10 @@ func GetContract(channelName string, chaincodeName string) (*gateway.Contract, e
 		return nil, fmt.Errorf("failed to get network: %v", err)
 	}
 
-	return network.GetContract(chaincodeName), nil
+	return network, nil
+}
+
+// GetContract returns the contract
+func GetContract(network *gateway.Network, contract string) *gateway.Contract {
+	return network.GetContract(contract)
 }

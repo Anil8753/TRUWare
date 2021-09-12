@@ -1,14 +1,22 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/Anil8753/truware/app/api/warehouse"
 	"github.com/gorilla/mux"
 )
 
-func RegisterWarehouseRoutes(r *mux.Router) {
+func RegisterWarehouseRoutes(r *mux.Router) error {
 
-	h := warehouse.GetHandler()
+	h, err := warehouse.GetHandler()
+	if err != nil {
+		return fmt.Errorf("failed to get handler. %v", err)
+	}
 
+	r.HandleFunc("/api/warehouse/identity", h.Identity).Methods("GET")
 	r.HandleFunc("/api/warehouse", h.Create).Methods("POST")
 	r.HandleFunc("/api/warehouse/{id}", h.Read).Methods("GET")
+
+	return nil
 }

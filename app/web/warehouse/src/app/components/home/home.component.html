@@ -1,7 +1,10 @@
-<p>home works!</p>
+<div class="d-flex">
+    <div class="container">
+        <hr>
+        <div *ngIf="identity && identity.Name">Welcome {{identity.Name}}</div>
+        <hr>
 
-<button class="btn btn-primary" (click)="onClick()"> Click me</button>
-
-<div ng-if="asset">
-    {{asset | json}}
+        <!-- <button class="btn btn-primary" (click)="onClick()"> Click me</button> -->
+        <app-warehouse-details [asset]='asset'></app-warehouse-details>
+    </div>
 </div>

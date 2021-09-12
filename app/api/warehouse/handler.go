@@ -1,22 +1,34 @@
 package warehouse
 
 import (
+	"fmt"
+
 	"github.com/Anil8753/truware/app/api/connector"
 	"github.com/hyperledger/fabric-sdk-go/pkg/gateway"
 )
 
+const (
+	channel         = "mychannel"
+	ccWarehouseName = "warehouse"
+)
+
 type Handler struct {
-	contract *gateway.Contract
+	ccWarehouse *gateway.Contract
 }
 
-func GetHandler() *Handler {
+func GetHandler() (*Handler, error) {
 
-	sc, err := connector.GetContract("mychannel", "warehouse")
+	nw, err := connector.GetNetwork(channel)
 	if err != nil {
-		panic(err)
+		return nil, fmt.Errorf("failed to get network '%s'. \n%v", channel, err)
+	}
+
+	sc := connector.GetContract(nw, ccWarehouseName)
+	if sc == nil {
+		return nil, fmt.Errorf("failed to get chaincode '%s'", ccWarehouseName)
 	}
 
 	return &Handler{
-		contract: sc,
-	}
+		ccWarehouse: sc,
+	}, nil
 }

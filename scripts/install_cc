@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ $1 != '' && $2 != '' ]]
+then
+    echo "------------------------------- "
+    echo "Copying chaincode '${1}'"
+    echo "------------------------------- "
+    rm -rf ../network/vars/chaincode/$1/go
+    cp -R ../chaincode/$1/go ../network/vars/chaincode/$1/go
+
+    echo "------------------------------- "
+    echo "Installing chaincode '${1}'"
+    echo "------------------------------- "
+    cd ../network
+    ./minifab ccup -n $1 -l go -v $2
+
+else
+    echo "Please pass the chaincode name and version"
+    echo "Example: ./install_cc warehouse 2.4"
+fi

@@ -15,7 +15,7 @@ func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result, err := h.contract.SubmitTransaction("CreateAsset", string(args))
+	result, err := h.ccWarehouse.SubmitTransaction("CreateAsset", string(args))
 	if err != nil {
 		httputils.HttpResponse(w, err.Error(), http.StatusBadRequest)
 		return
