@@ -2,29 +2,34 @@
 
 root=$(pwd)/../
 
-echo "----------- create build directory  ---------------"
-mkdir -p $root/build/warehouse
-echo "build directory created sucessfully"
+function buildApp() {
 
-echo ""
-echo "----------- build warehouse go app ---------------"
-cd $root/app/warehouse/api
+    echo "----------- create build directory  ----------------------"
+    mkdir -p $root/build/warehouse
+    echo "build directory created sucessfully"
 
-go mod vendor
-rm -rf $root/build/warehouse/app
-go build -o $root/build/warehouse/app
+    echo ""
+    echo "----------- build $1 go app -----------------------"
+    cd $root/app/$1/api
 
-rm -rf $root/build/warehouse/config.json
-cp $root/app/warehouse/api/config.json $root/build/warehouse/config.json
+    go mod vendor
+    rm -rf $root/build/$1/app
+    go build -o $root/build/$1/app
 
-echo "warehouse go app built sucessfully"
+    rm -rf $root/build/$1/config.json
+    cp $root/app/$1/api/config.json $root/build/$1/config.json
 
-echo ""
-echo "----------- build warehouse angular app ---------------"
-cd $root/app/warehouse/web
+    echo "$1 go app built sucessfully"
 
-npm install
-rm -rf $root/build/warehouse/www/
-ng build --prod --output-path $root/build/warehouse/www/
-echo "warehouse angular app built sucessfully"
-echo ""
+    echo ""
+    echo "----------- build $1 angular app ------------------"
+    cd $root/app/$1/web
+
+    npm install
+    rm -rf $root/build/$1/www/
+    ng build --prod --output-path $root/build/$1/www/
+    echo "$1 angular app built sucessfully"
+    echo ""
+}
+
+buildApp warehouse
