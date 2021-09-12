@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $1 == 'up' ]]
+if [[ $1 == 'netup' ]]
 then
     echo
     echo "-----------------------------------------------------------------------------"
@@ -10,6 +10,17 @@ then
 
     cd ../network
     ./minifab netup -e true -s couchdb -o admin.truware.com
+
+elif [[ $1 == 'up' ]]
+then
+    echo
+    echo "------------------------------------------------------------------------------------------------"
+    echo "Executing command: ./minifab up -e true -s couchdb -c mychannel -n warehouse -o admin.truware.com"
+    echo "------------------------------------------------------------------------------------------------"
+    echo
+
+    cd ../network
+     ./minifab up -e true -s couchdb -c mychannel -n warehouse -p '"InitLedger"' -o admin.truware.com
 
 elif [[ $1 == 'down' ]]
 then

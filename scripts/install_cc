@@ -5,6 +5,7 @@ then
     echo "------------------------------- "
     echo "Copying chaincode '${1}'"
     echo "------------------------------- "
+    mkdir -p -- ../network/vars/chaincode/$1/go
     rm -rf ../network/vars/chaincode/$1/go
     cp -R ../chaincode/$1/go ../network/vars/chaincode/$1/go
 
