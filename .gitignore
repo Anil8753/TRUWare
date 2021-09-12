@@ -7,3 +7,4 @@ testapp/go/connection/
 **/node_modules/
 **/vendor/
 app/warehouse/web/src/index.html
+build/

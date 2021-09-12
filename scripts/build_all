@@ -1,0 +1,23 @@
+#!/bin/bash
+
+root=$(pwd)/../
+
+echo "----------- create build directory  ---------------"
+mkdir -p $root/build/warehouse
+echo "build directory created sucessfully"
+
+echo ""
+echo "----------- build warehouse go app ---------------"
+cd $root/app/warehouse/api
+go mod vendor
+go build -o $root/build/warehouse/app
+cp $root/app/warehouse/api/config.json $root/build/warehouse/config.json
+echo "warehouse go app built sucessfully"
+
+echo ""
+echo "----------- build warehouse angular app ---------------"
+cd $root/app/warehouse/web
+npm install
+ng build --output-path $root/build/warehouse/www/
+echo "warehouse angular app built sucessfully"
+echo ""
