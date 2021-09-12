@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
-import { FormGroup, FormControl, FormArray } from '@angular/forms'
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
@@ -15,8 +14,10 @@ import { Asset, GeneralInfo, Postion } from 'src/app/components/asset/asset';
 })
 export class AssetComponent implements OnInit {
 
+  @Input() asset: Asset;
+  @Input() edit:boolean;
+
   faMapPin = faMapPin;
-  asset: Asset;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -25,9 +26,11 @@ export class AssetComponent implements OnInit {
     private http: HttpClient,
     private utils: UtilsService,
   ) { 
-    this.asset = new Asset();
-    this.asset.generalInfo = new GeneralInfo();
-    this.asset.postion = new Postion();
+    if (!this.edit) {
+      this.asset = new Asset();
+      this.asset.generalInfo = new GeneralInfo();
+      this.asset.postion = new Postion();
+    }
   }
 
   ngOnInit(): void {
@@ -50,37 +53,68 @@ export class AssetComponent implements OnInit {
   }
 
   onSubmit() {
-   // alert('Are you sure')
-   const validation = this.validate();
-   if (validation.status === false) {
-    this.toast.error(validation.message, 'ERROR');
-      return;
-   }
+    if (this.edit)
+      this.onUpdate();
+    else
+      this.onRegister();
+  }
 
-    this.spinner.show();
-    this.asset.id = new Date().getSeconds().toString();
-    this.asset.status = parseInt(this.asset.status.toString());
-    console.log(this.asset);
+  private onRegister() {
+    const validation = this.validate();
+    if (validation.status === false) {
+     this.toast.error(validation.message, 'ERROR');
+       return;
+    }
+ 
+     this.spinner.show();
+     this.asset.id = new Date().getSeconds().toString();
+     this.asset.status = parseInt(this.asset.status.toString());
+     console.log(this.asset);
+ 
+     const url = `${this.utils.baseUrl()}/api/warehouse`;
+ 
+     this.http.post(url, this.asset)
+     .subscribe(res=>{
+       this.activeModal.close(this.asset);
+       this.spinner.hide();
+       this.toast.success('Warehouse data saved succesfully.', 'SUCCESS');
+     },
+     err=>{
+       this.spinner.hide();
+       this.toast.error('Failed to save the warehouse data.', 'ERROR');
+       console.error(err);
+     });
+  }
 
-    const url = `${this.utils.baseUrl()}/api/warehouse`;
-
-    this.http.post(url, this.asset)
-    .subscribe(res=>{
-      this.activeModal.close(this.asset);
-      this.spinner.hide();
-      this.toast.success('Warehouse data saved succesfully.', 'SUCCESS');
-    },
-    err=>{
-      this.spinner.hide();
-      this.toast.error('Failed to save the warehouse data.', 'ERROR');
-      console.error(err);
-    });
-    
+  private onUpdate() {
+    const validation = this.validate();
+    if (validation.status === false) {
+     this.toast.error(validation.message, 'ERROR');
+       return;
+    }
+ 
+     this.spinner.show();
+     this.asset.status = parseInt(this.asset.status.toString());
+     console.log(this.asset);
+ 
+     const url = `${this.utils.baseUrl()}/api/warehouse/${this.asset.id}`;
+ 
+     this.http.put(url, this.asset)
+     .subscribe(res=>{
+       this.activeModal.close(this.asset);
+       this.spinner.hide();
+       this.toast.success('Warehouse data saved succesfully.', 'SUCCESS');
+     },
+     err=>{
+       this.spinner.hide();
+       this.toast.error('Failed to save the warehouse data.', 'ERROR');
+       console.error(err);
+     });
   }
 
   private validate() : { status:boolean, message: string}{
 
-    if (!this.asset.status)
+    if (this.asset.status == null || this.asset.status == undefined)
       return { status:false, message:`Please enter warehouse status`};
 
     if (!this.asset.generalInfo.name)

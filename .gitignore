@@ -4,3 +4,4 @@ network/vars/
 testapp/go/vendor/
 testapp/go/connection/
 
+app/api/vendor/
