@@ -1,0 +1,28 @@
+<div class="d-flex">
+    <div class="container">
+        <hr>
+        <div *ngIf="identity && identity.Name">Welcome {{identity.Name}}</div>
+        <hr>
+
+
+        <div class="d-flex flex-row-reverse">
+
+            <button class="btn btn-outline-primary-link btn-sm ml-2" (click)="onAddNew()">
+                <fa-icon [icon]="iconWarehouseAdd" size="lg"></fa-icon>
+            </button>
+
+            <button type="button" class="btn btn-outline-primary-link btn-sm  ml-2" (click)="onUpdate()">
+                <fa-icon [icon]="faEdit" size="lg"></fa-icon>
+            </button>
+
+            <select class="form-control form-control-sm  ml-2" style="width:200px;"
+                (change)="onChange($event.target.value)">
+                <option *ngFor="let asset of assets; let i= index" [value]="i">{{asset.generalInfo.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="mt-2"></div>
+        <app-warehouse-details [asset]='selected'></app-warehouse-details>
+    </div>
+</div>

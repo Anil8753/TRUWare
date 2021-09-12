@@ -4,4 +4,6 @@ network/vars/
 testapp/go/vendor/
 testapp/go/connection/
 
-app/api/vendor/
+**/node_modules/
+**/vendor/
+app/warehouse/web/src/index.html
