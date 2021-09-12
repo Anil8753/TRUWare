@@ -18,6 +18,8 @@ const (
 
 type GeneralInfo struct {
 	Name          string `json:"name"`
+	Phone         string `json:"phone"`
+	Email         string `json:"email"`
 	Address       string `json:"address"`
 	Details       string `json:"details"`
 	Rate          int    `json:"rate"`

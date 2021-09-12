@@ -39,7 +39,7 @@ func (s *WarehouseContract) CreateAsset(
 
 	asset := Asset{}
 	if err := json.Unmarshal([]byte(assetJSON), &asset); err != nil {
-		return fmt.Errorf("invalid create assetJSON string. \n%s", assetJSON)
+		return fmt.Errorf("invalid create assetJSON string. \nerror: %v\ninput data: %s", err, assetJSON)
 	}
 
 	exists, err := s.AssetExists(ctx, asset.Id)

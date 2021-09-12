@@ -51,7 +51,7 @@ func (s *WarehouseContract) UpdateAsset(
 
 	// New Asset
 	if err := json.Unmarshal([]byte(assetJSON), &asset); err != nil {
-		return fmt.Errorf("invalid create assetJSON string. \n%s", assetJSON)
+		return fmt.Errorf("invalid create assetJSON string. \nerror: %v\ninput data: %s", err, assetJSON)
 	}
 
 	if err := ValidateAssetData(asset); err != nil {
