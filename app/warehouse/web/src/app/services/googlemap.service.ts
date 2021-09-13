@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class GooglemapService {
 
-  public API_KEY = 'AIzaSyAzvmx6NEgCPnfo6vswIp5mJtrh5exWSIQ';
+  public API_KEY = 'YOUR_GMAP_KEY';
   constructor() { }
 }
