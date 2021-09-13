@@ -46,7 +46,8 @@ then
 
 else
     echo "Plese enter the command line"
-    echo " * up - make the network up"
+    echo " * netup - make the network up with creating channel and deploying chaincode. (first time onwards)"
+    echo " * up - make the network up with creating 'mychannel' and 'simple' chaincode (first time)"
     echo " * down - make the network down"
     echo " * cleanup - cleans everything including data and nodes"
 fi
