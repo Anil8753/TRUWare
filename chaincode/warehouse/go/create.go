@@ -32,9 +32,13 @@ func (s *WarehouseContract) CreateAsset(
 	assetJSON string,
 ) error {
 
-	identity, err := GetInvokerIdentity(ctx)
+	identity, mspId, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get identity. %v", err)
+	}
+
+	if mspId != WHCreateMSP {
+		return fmt.Errorf("unauthorized user mspId: %s", mspId)
 	}
 
 	asset := Asset{}
@@ -42,7 +46,7 @@ func (s *WarehouseContract) CreateAsset(
 		return fmt.Errorf("invalid create assetJSON string. \nerror: %v\ninput data: %s", err, assetJSON)
 	}
 
-	exists, err := s.AssetExists(ctx, asset.Id)
+	exists, err := s.assetExists(ctx, asset.Id)
 	if err != nil {
 		return err
 	}
@@ -56,10 +60,7 @@ func (s *WarehouseContract) CreateAsset(
 	}
 
 	asset.OwnerId = identity
-
-	// if asset.Allocations == nil {
-	// 	asset.Allocations = make([]Allocation, 0)
-	// }
+	asset.Type = AssetType
 
 	bytes, err := json.Marshal(asset)
 	if err != nil {

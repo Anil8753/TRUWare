@@ -1,12 +1,12 @@
 package main
 
 type Asset struct {
+	Type    string           `json:"type"`
 	Id      string           `json:"id"`
 	OwnerId string           `json:"ownerId"`
 	General GeneralInfo      `json:"generalInfo"`
 	Postion WarehousePostion `json:"postion"`
 	Status  WarehouseStatus  `json:"status"`
-	// Allocations []Allocation     `json:"allocations"`
 }
 
 type WarehouseStatus int
@@ -31,10 +31,3 @@ type WarehousePostion struct {
 	Latitude  float64 `json:"latitude"`
 	Longitude float64 `json:"longitude"`
 }
-
-// type Allocation struct {
-// 	Id       string `json:"name"`
-// 	ClientId string `json:"clientId"`
-// 	Area     int    `json:"area"`
-// 	Duration int    `json:"duration"`
-// }

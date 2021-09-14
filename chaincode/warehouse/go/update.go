@@ -34,13 +34,17 @@ func (s *WarehouseContract) UpdateAsset(
 	assetJSON string,
 ) error {
 
-	identity, err := GetInvokerIdentity(ctx)
+	identity, mspId, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get identity. %v", err)
 	}
 
+	if mspId != WHUpdateMSP {
+		return fmt.Errorf("unauthorized user mspId: %s", mspId)
+	}
+
 	// Read existing
-	asset, err := s.ReadAsset(ctx, id)
+	asset, err := s.readOwnerAsset(ctx, id)
 	if err != nil {
 		return err
 	}
@@ -60,6 +64,10 @@ func (s *WarehouseContract) UpdateAsset(
 
 	if asset.OwnerId != identity {
 		return errors.New("unauthorized warehouse owner")
+	}
+
+	if asset.Type != AssetType {
+		return fmt.Errorf("invalid asset type: %s", asset.Type)
 	}
 
 	bytes, err := json.Marshal(asset)

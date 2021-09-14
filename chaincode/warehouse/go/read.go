@@ -7,8 +7,8 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-// ReadAsset returns the asset stored in the world state with given id.
-func (s *WarehouseContract) ReadAsset(
+// readOwnerAsset returns the asset stored in the world state with given id.
+func (s *WarehouseContract) readOwnerAsset(
 	ctx contractapi.TransactionContextInterface,
 	id string,
 ) (*Asset, error) {

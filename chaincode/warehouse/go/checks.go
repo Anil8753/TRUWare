@@ -6,8 +6,8 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-// AssetExists returns true when asset with given ID exists in world state
-func (s *WarehouseContract) AssetExists(
+// assetExists returns true when asset with given ID exists in world state
+func (s *WarehouseContract) assetExists(
 	ctx contractapi.TransactionContextInterface,
 	id string,
 ) (bool, error) {

@@ -3,17 +3,12 @@ package warehouse
 import (
 	"net/http"
 
-	"github.com/gorilla/mux"
-
 	httputils "github.com/Anil8753/truware/app/api/utils/http"
 )
 
-func (h *Handler) Read(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) ReadAll(w http.ResponseWriter, r *http.Request) {
 
-	vars := mux.Vars(r)
-	id := vars["id"]
-
-	result, err := h.ccWarehouse.EvaluateTransaction("ReadAsset", id)
+	result, err := h.ccWarehouse.EvaluateTransaction("ReadAllOwnerAssets")
 	if err != nil {
 		httputils.HttpResponse(w, err.Error(), http.StatusBadRequest)
 		return

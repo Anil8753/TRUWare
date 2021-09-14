@@ -7,14 +7,18 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-// ReadAllAsset returns all assets stored in the world state with the connected user (warehouse owner).
-func (s *WarehouseContract) ReadAllAsset(
+// ReadAllOwnerAssets returns all assets stored in the world state with the connected user (warehouse owner).
+func (s *WarehouseContract) ReadAllOwnerAssets(
 	ctx contractapi.TransactionContextInterface,
 ) ([]Asset, error) {
 
-	identity, err := GetInvokerIdentity(ctx)
+	identity, mspId, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get identity. %v", err)
+	}
+
+	if mspId != WHOwnerReadAllMSP {
+		return nil, fmt.Errorf("unauthorized user mspId: %s", mspId)
 	}
 
 	query := fmt.Sprintf("{\"selector\":{\"ownerId\":\"%s\"}}", identity)

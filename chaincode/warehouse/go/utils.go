@@ -4,12 +4,20 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-func GetInvokerIdentity(ctx contractapi.TransactionContextInterface) (string, error) {
+// GetInvokerIdentity returns the current user's unique id and mspID
+func GetInvokerIdentity(ctx contractapi.TransactionContextInterface) (string, string, error) {
 
-	id, err := ctx.GetClientIdentity().GetID()
+	cid := ctx.GetClientIdentity()
+
+	id, err := cid.GetID()
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
 
-	return id, nil
+	mspId, err := cid.GetMSPID()
+	if err != nil {
+		return "", "", err
+	}
+
+	return id, mspId, nil
 }
