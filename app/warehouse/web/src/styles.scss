@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-$body-bg: rgb(230, 236, 236);
-$body-color: #111;
+// $body-bg: #4267B2;
+$body-bg: #213a6d;
+$body-color: rgb(109, 97, 97);
+
+$theme-colors: (
+  "primary": #4267B2,
+  "danger": #b33d36
+);
+// $body-color: #4267B2;
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
@@ -9,4 +16,19 @@ $body-color: #111;
 
 * body{
     font-size: small;
+}
+
+.tool-btn {
+    color: white;
+}
+
+hr {
+  color: rgb(55, 70, 153);
+  background-color: rgb(80, 93, 175);;
+}
+
+.h-seperator {
+  width: 100vw;
+  background-color: azure;
+  height: 1px;
 }

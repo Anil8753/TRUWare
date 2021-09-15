@@ -1,7 +1,7 @@
 <div *ngIf="asset">
     <div class="row" ng-if="asset && asset.generalInfo">
         <div class="col col-6">
-            <div class="card">
+            <div class="card detail-card">
                 <div class="card-body">
                     <div ng-if="asset.generalInfo.name">{{asset.generalInfo.name}}</div>
                     <div ng-if="asset.generalInfo.phone"> <span>Phone: </span> {{asset.generalInfo.phone}}</div>
@@ -10,14 +10,14 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card detail-card">
                 <div class="card-body">
                     <span>Details: </span>
                     <div>{{asset.generalInfo.details}}</div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card detail-card ">
                 <div class="card-body">
                     <div><span>Rate: </span> {{asset.generalInfo.rate}} Rs per sqft</div>
                     <div> <span>Total Area: </span> {{asset.generalInfo.totalArea}} sqft</div>

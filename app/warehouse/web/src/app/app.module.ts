@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormvalidationDirective } from './directives/formvalidation.directive';
 import { GmapsComponent } from './components/gmaps/gmaps.component';
 import { WarehouseDetailsComponent } from './components/warehouse-details/warehouse-details.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { WarehouseDetailsComponent } from './components/warehouse-details/wareho
     FormvalidationDirective,
     GmapsComponent,
     WarehouseDetailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
