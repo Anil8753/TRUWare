@@ -4,7 +4,7 @@
         <div class="col-8">
             <div class="card detail-card">
                 <div class="card-body">
-                    <div ng-if="asset.generalInfo.name">{{asset.generalInfo.name}}</div>
+                    <div class="heading" ng-if="asset.generalInfo.name">{{asset.generalInfo.name}}</div>
                     <div ng-if="asset.generalInfo.phone"> <span>Phone: </span> {{asset.generalInfo.phone}}</div>
                     <div ng-if="asset.generalInfo.email"> <span>Email: </span> {{asset.generalInfo.email}}</div>
                     <div><span>Address: </span> {{asset.generalInfo.address}}</div>
@@ -13,16 +13,22 @@
 
             <div class="card detail-card">
                 <div class="card-body">
-                    <span>Details: </span>
+                    <span class="heading">Details: </span>
                     <div>{{asset.generalInfo.details}}</div>
                 </div>
             </div>
 
-            <div class="card detail-card ">
+            <div class="card detail-card">
                 <div class="card-body">
                     <div><span>Rate: </span> {{asset.generalInfo.rate}} Rs per sqft</div>
                     <div> <span>Total Area: </span> {{asset.generalInfo.totalArea}} sqft</div>
                     <div> <span>Allocated Area: </span>{{asset.generalInfo.allocatedArea}}</div>
+                </div>
+            </div>
+
+            <div class="card detail-card">
+                <div class="card-body">
+                    <app-ratings></app-ratings>
                 </div>
             </div>
 

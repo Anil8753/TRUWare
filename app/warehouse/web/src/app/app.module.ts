@@ -19,6 +19,7 @@ import { FormvalidationDirective } from './directives/formvalidation.directive';
 import { GmapsComponent } from './components/gmaps/gmaps.component';
 import { WarehouseDetailsComponent } from './components/warehouse-details/warehouse-details.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RatingsComponent } from './components/ratings/ratings.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FooterComponent } from './components/footer/footer.component';
     GmapsComponent,
     WarehouseDetailsComponent,
     FooterComponent,
+    RatingsComponent,
   ],
   imports: [
     BrowserModule,
