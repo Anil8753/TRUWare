@@ -1,6 +1,7 @@
 <div *ngIf="asset">
     <div class="row" ng-if="asset && asset.generalInfo">
-        <div class="col col-6">
+
+        <div class="col-8">
             <div class="card detail-card">
                 <div class="card-body">
                     <div ng-if="asset.generalInfo.name">{{asset.generalInfo.name}}</div>
@@ -27,19 +28,16 @@
 
         </div>
 
-        <div class="col col-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="map-holder">
-                        <app-gmaps [latitude]="asset.postion.latitude" [longitude]="asset.postion.longitude">
-                        </app-gmaps>
-                    </div>
-                </div>
+        <div class="col-4">
+            <div class="map-holder">
+                <app-gmaps [latitude]="asset.postion.latitude" [longitude]="asset.postion.longitude">
+                </app-gmaps>
             </div>
         </div>
+
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col col-6">
 
         </div>
@@ -48,5 +46,5 @@
 
         </div>
 
-    </div>
+    </div> -->
 </div>
