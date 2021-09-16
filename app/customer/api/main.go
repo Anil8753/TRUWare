@@ -22,7 +22,7 @@ func main() {
 	// Second rest other paths serve from 'www' dir
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./www")))
 
-	port := ":8081"
+	port := ":8082"
 	fmt.Printf("\nStarting API server at port %s \n", port)
 
 	c := cors.New(cors.Options{
