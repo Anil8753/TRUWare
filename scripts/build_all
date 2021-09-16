@@ -33,3 +33,4 @@ function buildApp() {
 }
 
 buildApp warehouse
+buildApp customer

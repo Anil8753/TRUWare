@@ -7,7 +7,7 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-func (s *OrderContract) ReadAllAsset(
+func (s *OrderContract) ReadAllOrders(
 	ctx contractapi.TransactionContextInterface,
 ) ([]Order, error) {
 
