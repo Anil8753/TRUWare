@@ -20,6 +20,7 @@ import { GmapsComponent } from './components/gmaps/gmaps.component';
 import { WarehouseDetailsComponent } from './components/warehouse-details/warehouse-details.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RatingsComponent } from './components/ratings/ratings.component';
+import { SensorsComponent } from './components/sensors/sensors.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RatingsComponent } from './components/ratings/ratings.component';
     WarehouseDetailsComponent,
     FooterComponent,
     RatingsComponent,
+    SensorsComponent,
   ],
   imports: [
     BrowserModule,

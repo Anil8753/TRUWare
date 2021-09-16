@@ -1,5 +1,5 @@
 <div *ngIf="asset">
-    <div class="row" ng-if="asset && asset.generalInfo">
+    <div class="row no-gutters" ng-if="asset && asset.generalInfo">
 
         <div class="col-8">
             <div class="card detail-card">
@@ -34,7 +34,14 @@
 
         </div>
 
-        <div class="col-4">
+        <div class="col-4 pl-3">
+
+            <div class="card detail-card">
+                <div class="card-body">
+                    <app-sensors></app-sensors>
+                </div>
+            </div>
+
             <div class="map-holder">
                 <app-gmaps [latitude]="asset.postion.latitude" [longitude]="asset.postion.longitude">
                 </app-gmaps>
