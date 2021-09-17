@@ -10,7 +10,7 @@ export class UtilsService {
   constructor() { }
 
   baseUrl(): string{
-    return isDevMode() ? 'http://localhost:8081' : 'http://localhost:8081';
+    return isDevMode() ? 'http://localhost:8082' : 'http://localhost:8082';
   }
 
   getUUID():string {
