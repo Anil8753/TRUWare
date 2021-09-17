@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { faWarehouse } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Warehouse } from '../warehouse-card/warehouse';
 
@@ -9,6 +10,8 @@ import { Warehouse } from '../warehouse-card/warehouse';
   styleUrls: ['./warehouse-list.component.scss']
 })
 export class WarehouseListComponent implements OnInit {
+
+  emptyIcon = faWarehouse;
 
   warehouses: Warehouse[];
 

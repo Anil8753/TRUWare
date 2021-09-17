@@ -1,9 +1,5 @@
 <div class="dash-container">
 
-    <div class="row" *ngIf="identity">
-        <span class="identity-banner">Welcome {{identity.Name}}</span>
-    </div>
-
     <div class="row">
         <div class="col-4" *ngIf="identity && identity.Name" style="float: left;">
             <span class="identity-banner">Welcome {{identity.Name}}</span>
@@ -13,12 +9,12 @@
             <div class="d-flex flex-row-reverse">
 
                 <button class="btn btn-outline-primary btn-sm tool-btn ml-2" (click)="onOpenWallet()">
-                    <fa-icon [icon]="iconWarehouseAdd" size="lg"></fa-icon>
+                    <fa-icon [icon]="walletIcon" size="lg"></fa-icon>
                 </button>
 
                 <button type="button" class="btn btn-outline-primary btn-sm  tool-btn ml-2"
                     (click)="onShowTransactions()">
-                    <fa-icon [icon]="faEdit" size="lg"></fa-icon>
+                    <fa-icon [icon]="txnIcon" size="lg"></fa-icon>
                 </button>
 
             </div>

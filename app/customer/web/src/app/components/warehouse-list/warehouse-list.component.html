@@ -1,5 +1,20 @@
-<div class="">
-    <div *ngFor="let wh of warehouses">
-        <app-warehouse-card [warehouse]=wh></app-warehouse-card>
+<div class="d-flex flex-column h-100">
+
+    <div class="">
+        <div *ngFor="let wh of warehouses">
+            <app-warehouse-card [warehouse]=wh></app-warehouse-card>
+        </div>
     </div>
+
+
+    <div class="p-2 flex-grow-1 grow-p">
+        <div class="d-flex justify-content-center">
+            <fa-icon [icon]="emptyIcon" style="font-size: 128px;"></fa-icon>
+            <fa-icon [icon]="emptyIcon" style="font-size: 128px;"></fa-icon>
+            <fa-icon [icon]="emptyIcon" style="font-size: 128px;"></fa-icon>
+            <fa-icon [icon]="emptyIcon" style="font-size: 128px;"></fa-icon>
+        </div>
+    </div>
+
+
 </div>
