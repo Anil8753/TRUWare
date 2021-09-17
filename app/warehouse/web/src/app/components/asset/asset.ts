@@ -6,6 +6,8 @@ export class GeneralInfo {
     address: string;
     details: string;
     rate: number;
+    panalityPremature: number;
+    panalityAfterLimit: number;
     totalArea: number;
     allocatedArea: number;
   }
