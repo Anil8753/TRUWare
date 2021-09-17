@@ -14,8 +14,8 @@ const (
 )
 
 type Handler struct {
-	// ccWarehouse *gateway.Contract
-	ccOrder *gateway.Contract
+	ccWarehouse *gateway.Contract
+	ccOrder     *gateway.Contract
 }
 
 func GetHandler() (*Handler, error) {
@@ -25,18 +25,18 @@ func GetHandler() (*Handler, error) {
 		return nil, fmt.Errorf("failed to get network '%s'. \n%v", channel, err)
 	}
 
-	sc1 := connector.GetContract(nw, ccWarehouseName)
+	sc1 := connector.GetContract(nw, ccOrderName)
 	if sc1 == nil {
+		return nil, fmt.Errorf("failed to get chaincode '%s'", ccOrderName)
+	}
+
+	sc2 := connector.GetContract(nw, ccWarehouseName)
+	if sc2 == nil {
 		return nil, fmt.Errorf("failed to get chaincode '%s'", ccWarehouseName)
 	}
 
-	// sc2 := connector.GetContract(nw, ccWarehouseName)
-	// if sc2 == nil {
-	// 	return nil, fmt.Errorf("failed to get chaincode '%s'", ccWarehouseName)
-	// }
-
 	return &Handler{
-		ccOrder: sc1,
-		// ccWarehouse: sc2,
+		ccOrder:     sc1,
+		ccWarehouse: sc2,
 	}, nil
 }

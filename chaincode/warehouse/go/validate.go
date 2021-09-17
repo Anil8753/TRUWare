@@ -33,7 +33,7 @@ func ValidateAssetData(asset *Asset) error {
 	}
 
 	if asset.General.Rate < 1 {
-		return fmt.Errorf("rate cannot be less than 1. Rate: %d", asset.General.Rate)
+		return fmt.Errorf("rate cannot be less than 1. Rate: %v", asset.General.Rate)
 	}
 
 	return nil
