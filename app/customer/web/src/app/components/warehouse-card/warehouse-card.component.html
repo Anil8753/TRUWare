@@ -1,0 +1,39 @@
+<div class="card detail-card mt-2">
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-6">
+                <div class="heading" ng-if="warehouse.generalInfo.name">{{warehouse.generalInfo.name}}</div>
+                <div ng-if="warehouse.generalInfo.phone"> <span>Phone: </span> {{warehouse.generalInfo.phone}}</div>
+                <div ng-if="warehouse.generalInfo.email"> <span>Email: </span> {{warehouse.generalInfo.email}}</div>
+                <div><span>Address: </span> {{warehouse.generalInfo.address}}</div>
+            </div>
+
+            <div class="col-4">
+                <div><span>Rate: </span> {{warehouse.generalInfo.rate}} Rs per sqft</div>
+                <div> <span>Total Area: </span> {{warehouse.generalInfo.totalArea}} sqft</div>
+                <div> <span>Allocated Area: </span>{{warehouse.generalInfo.allocatedArea}}</div>
+            </div>
+
+            <div class="col-2">
+                <div>
+                    <span>Rating: </span>
+                    <span>
+                        <fa-icon class="text-warning" *ngFor="let n of counter(warehouse.generalInfo.rating)"
+                            [icon]="starIcon"></fa-icon>
+                    </span>
+                </div>
+
+                <div class="mt-2">
+                    <button type="button" class="btn btn-outline-info btn-sm card-btn">More Details</button>
+                </div>
+
+                <div class="mt-1">
+                    <button type="button" class="btn btn-outline-primary btn-sm card-btn" (click)="bookSpace()">Book
+                        Space</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
