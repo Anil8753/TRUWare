@@ -23,6 +23,8 @@ import { FilterbarComponent } from './components/filterbar/filterbar.component';
 import { WarehouseListComponent } from './components/warehouse-list/warehouse-list.component';
 import { WarehouseCardComponent } from './components/warehouse-card/warehouse-card.component';
 import { BookSpaceComponent } from './components/book-space/book-space.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { WalletComponent } from './components/wallet/wallet.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { BookSpaceComponent } from './components/book-space/book-space.component
     WarehouseListComponent,
     WarehouseCardComponent,
     BookSpaceComponent,
+    TransactionsComponent,
+    WalletComponent,
   ],
   imports: [
     BrowserModule,

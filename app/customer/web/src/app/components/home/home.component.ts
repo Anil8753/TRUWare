@@ -36,6 +36,14 @@ export class HomeComponent implements OnInit {
     const res = await this.http.get<Payload>(url).toPromise();
     return JSON.parse(res.message);
   }
+
+  onOpenWallet() {
+
+  }
+  
+  onShowTransactions() {
+
+  }
 }
 
 

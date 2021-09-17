@@ -3,6 +3,27 @@
     <div class="row" *ngIf="identity">
         <span class="identity-banner">Welcome {{identity.Name}}</span>
     </div>
+
+    <div class="row">
+        <div class="col-4" *ngIf="identity && identity.Name" style="float: left;">
+            <span class="identity-banner">Welcome {{identity.Name}}</span>
+        </div>
+
+        <div class="col-8">
+            <div class="d-flex flex-row-reverse">
+
+                <button class="btn btn-outline-primary btn-sm tool-btn ml-2" (click)="onWalletOpen()">
+                    <fa-icon [icon]="iconWarehouseAdd" size="lg"></fa-icon>
+                </button>
+
+                <button type="button" class="btn btn-outline-primary btn-sm  tool-btn ml-2" (click)="onShowTransactions()">
+                    <fa-icon [icon]="faEdit" size="lg"></fa-icon>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
     <hr>
     <div class="row">
         <div class="col-2">

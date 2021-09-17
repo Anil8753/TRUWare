@@ -84,6 +84,14 @@ export class BookSpaceComponent implements OnInit {
     if (!this.order.duration)
       return { status:false, message:`Please enter valid duration`};
 
+    if (this.order.duration > 365)
+      return { status:false, message:`Cannot book the space for more than 365 days`};
+
+    const available = this.warehouse.generalInfo.totalArea - this.warehouse.generalInfo.allocatedArea;
+
+    if (this.order.space > this.warehouse.generalInfo.totalArea - available)
+      return { status:false, message:`Cannot book the space more than available space`};
+
     return { status: true, message: ''};
   }
 }
