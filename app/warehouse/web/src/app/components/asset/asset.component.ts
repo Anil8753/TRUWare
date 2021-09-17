@@ -67,7 +67,7 @@ export class AssetComponent implements OnInit {
     }
  
      this.spinner.show();
-     this.asset.id = new Date().getSeconds().toString();
+     this.asset.id = this.utils.getUUID();
      this.asset.status = parseInt(this.asset.status.toString());
      console.log(this.asset);
  
