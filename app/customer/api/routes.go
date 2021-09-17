@@ -15,6 +15,8 @@ func RegisterWarehouseRoutes(r *mux.Router) error {
 	}
 
 	r.HandleFunc("/api/identity", h.Identity).Methods("GET")
+	r.HandleFunc("/api/warehouse", h.ReadAllWarehouses).Methods("GET")
+
 	r.HandleFunc("/api/orders", h.ReadAllOrders).Methods("GET")
 	r.HandleFunc("/api/order", h.PlaceOrder).Methods("POST")
 	r.HandleFunc("/api/order/prematureclose/{id}", h.PrematureClose).Methods("PUT")

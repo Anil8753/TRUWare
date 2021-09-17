@@ -9,11 +9,13 @@ import (
 
 const (
 	channel         = "mychannel"
-	ccWarehouseName = "order"
+	ccOrderName     = "order"
+	ccWarehouseName = "warehouse"
 )
 
 type Handler struct {
-	ccWarehouse *gateway.Contract
+	// ccWarehouse *gateway.Contract
+	ccOrder *gateway.Contract
 }
 
 func GetHandler() (*Handler, error) {
@@ -23,12 +25,18 @@ func GetHandler() (*Handler, error) {
 		return nil, fmt.Errorf("failed to get network '%s'. \n%v", channel, err)
 	}
 
-	sc := connector.GetContract(nw, ccWarehouseName)
-	if sc == nil {
+	sc1 := connector.GetContract(nw, ccWarehouseName)
+	if sc1 == nil {
 		return nil, fmt.Errorf("failed to get chaincode '%s'", ccWarehouseName)
 	}
 
+	// sc2 := connector.GetContract(nw, ccWarehouseName)
+	// if sc2 == nil {
+	// 	return nil, fmt.Errorf("failed to get chaincode '%s'", ccWarehouseName)
+	// }
+
 	return &Handler{
-		ccWarehouse: sc,
+		ccOrder: sc1,
+		// ccWarehouse: sc2,
 	}, nil
 }

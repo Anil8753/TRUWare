@@ -12,7 +12,7 @@ func (h *Handler) PrematureClose(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
-	result, err := h.ccWarehouse.SubmitTransaction("PrematureClose", id)
+	result, err := h.ccOrder.SubmitTransaction("PrematureClose", id)
 	if err != nil {
 		httputils.HttpResponse(w, err.Error(), http.StatusBadRequest)
 		return

@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   async initProfile() {
-    const url = `${this.utils.baseUrl()}/api/warehouse/identity`;
+    const url = `${this.utils.baseUrl()}/api/identity`;
     const res = await this.http.get<Payload>(url).toPromise();
     return JSON.parse(res.message);
   }

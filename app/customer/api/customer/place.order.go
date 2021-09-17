@@ -15,7 +15,7 @@ func (h *Handler) PlaceOrder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result, err := h.ccWarehouse.SubmitTransaction("PlaceOrder", string(args))
+	result, err := h.ccOrder.SubmitTransaction("PlaceOrder", string(args))
 	if err != nil {
 		httputils.HttpResponse(w, err.Error(), http.StatusBadRequest)
 		return

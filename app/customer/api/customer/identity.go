@@ -13,7 +13,7 @@ func (h *Handler) Identity(w http.ResponseWriter, r *http.Request) {
 		Name string
 	}
 
-	identity := &Identity{Name: "Admin"}
+	identity := &Identity{Name: "E-CommorceORG"}
 
 	bytes, err := json.Marshal(identity)
 	if err != nil {
