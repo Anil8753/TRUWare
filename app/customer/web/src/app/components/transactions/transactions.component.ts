@@ -69,6 +69,29 @@ export class TransactionsComponent implements OnInit {
     });
 
   }
+
+  getStatusLabel(status: number) {
+
+    if (status == 0)
+      return 'Booking is initiated';
+
+    if (status == 1)
+      return 'Booking is active';
+
+    if (status == 2)
+      return 'Booking has been rejected';
+    
+    if (status == 3)
+      return 'Booking order has completed';
+
+    if (status == 4)
+      return 'You have cancelled the booking';
+
+    if (status == 5)
+      return 'You have exceeded the booking tenure';
+
+    return ""
+  }
 }
 
 class OrderObject {

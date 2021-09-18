@@ -7,7 +7,7 @@ $body-color: rgb(109, 97, 97);
 
 $theme-colors: (
   "primary": #4267B2,
-  "danger": #b33d36
+  "danger": #e66741
 );
 // $body-color: #4267B2;
 
@@ -17,7 +17,9 @@ $theme-colors: (
 
 * body{
     font-size: small;
-    background-image: url('http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-3.jpg');
+    background-image: linear-gradient(rgba(31, 56, 85, 0.699), rgb(34, 110, 112));
+    // background-color: rgba(218, 136, 82, 0.541);
+    // background-image: url('http://www.vanseodesign.com/blog/wp-content/uploads/2011/10/background-3.jpg');
 }
 
 .tool-btn {

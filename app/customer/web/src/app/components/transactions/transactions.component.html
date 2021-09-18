@@ -8,6 +8,7 @@
     <div>
         <span class="text-success ml-1"><b>Active Order(s)</b></span>
         <div *ngFor="let txn of activeTxns" class="card shadow txn-active">
+            <div class="txt-entry-s">Status: {{getStatusLabel(txn.status)}}</div>
             <div class="txt-entry">Txn: {{txn.id}}</div>
             <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
             <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
@@ -22,7 +23,7 @@
             </div>
         </div>
 
-        <div *ngIf="activeTxns" class="txt-no-booking">
+        <div *ngIf="!activeTxns || activeTxns.length===0" class="txt-no-booking">
             <span>No active booking</span>
         </div>
     </div>
@@ -32,6 +33,7 @@
     <div>
         <span class="text-secondary ml-1"><b>Other historical transactions</b></span>
         <div *ngFor="let txn of nonActiveTxns" class="card shadow txn-non-active">
+            <div class="txt-entry-s">Status: {{getStatusLabel(txn.status)}}</div>
             <div class="txt-entry">Txn: {{txn.id}}</div>
             <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
             <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
