@@ -12,7 +12,10 @@
             <div class="col-4">
                 <div><span>Rate: </span> {{warehouse.generalInfo.rate}} Rs per sqft</div>
                 <div> <span>Total Area: </span> {{warehouse.generalInfo.totalArea}} sqft</div>
-                <div> <span>Allocated Area: </span>{{warehouse.generalInfo.allocatedArea}}</div>
+                <div>
+                    <span>Available Area: </span>{{warehouse.generalInfo.totalArea -
+                    warehouse.generalInfo.allocatedArea}}
+                </div>
             </div>
 
             <div class="col-2">
