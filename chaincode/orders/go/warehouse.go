@@ -3,8 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 
+	"github.com/hyperledger/fabric-chaincode-go/shim"
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
+	"github.com/hyperledger/fabric/common/util"
 )
 
 func (s *OrderContract) readWarehouse(
@@ -12,14 +15,34 @@ func (s *OrderContract) readWarehouse(
 	id string,
 ) (*Warehouse, error) {
 
-	bytes, err := ctx.GetStub().GetState(id)
-	if err != nil {
-		return nil, fmt.Errorf("could not found the warehouse. id: %s", id)
+	fmt.Printf("trying to read the warehouse with id: %s \n", id)
+
+	chainCodeArgs := util.ToChaincodeArgs("ReadAsset", id)
+	response := ctx.GetStub().InvokeChaincode("warehouse", chainCodeArgs, "mychannel")
+
+	if response.Status != shim.OK {
+		errMsg := fmt.Errorf("could not found the warehouse. id: %s \n. error: %s", id, response.Message)
+		return nil, errMsg
 	}
+
+	bytes := response.GetPayload()
 
 	wh := Warehouse{}
 	if err := json.Unmarshal(bytes, &wh); err != nil {
-		return nil, fmt.Errorf("failed to unmarshal data received from world state.\n %v", string(bytes))
+		return nil, fmt.Errorf("failed to unmarshal data received from world state.\n %v \n error: %v", string(bytes), err)
+	}
+
+	fmt.Println("got the warehouse")
+	{
+		b, err := ctx.GetStub().GetState(id)
+		if err != nil {
+			fmt.Printf("could not found the warehouse. id: %s", id)
+		}
+
+		wh2 := Warehouse{}
+		if err := json.Unmarshal(b, &wh2); err != nil {
+			fmt.Printf("failed to unmarshal data received from world state.\n %v \n error: %v", string(b), err)
+		}
 	}
 
 	return &wh, nil
@@ -36,9 +59,18 @@ func (s *OrderContract) updateWarehouse(
 		return fmt.Errorf("failed to marshal warehouse. %v", wh)
 	}
 
-	if err := ctx.GetStub().PutState(id, bytes); err != nil {
-		return fmt.Errorf("could not write the warehouse to world state")
+	chainCodeArgs := util.ToChaincodeArgs("UpdateAsset", id, string(bytes))
+	response := ctx.GetStub().InvokeChaincode("warehouse", chainCodeArgs, "mychannel")
+	if response.Status != shim.OK {
+		return fmt.Errorf("could not update the warehouse. id: %s \n. error: %s", id, response.Message)
 	}
+
+	// if err := ctx.GetStub().PutState(id, bytes); err != nil {
+	// 	return fmt.Errorf("could not write the warehouse to world state")
+	// }
+
+	fmt.Printf("warehouse data updated. %s\n", string(bytes))
+	log.Printf("warehouse data updated. %s\n", string(bytes))
 
 	return nil
 }

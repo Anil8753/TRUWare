@@ -12,6 +12,8 @@ func (s *OrderContract) PlaceOrder(
 	jsonStr string,
 ) error {
 
+	fmt.Println("PlaceOrder is invoked")
+
 	identity, mspId, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get identity. %v", err)
@@ -21,19 +23,23 @@ func (s *OrderContract) PlaceOrder(
 		return fmt.Errorf("unauthorized user mspId: %s", mspId)
 	}
 
+	fmt.Printf("invoker mspId: %s \n", mspId)
+
 	order := Order{}
 	if err := json.Unmarshal([]byte(jsonStr), &order); err != nil {
 		return fmt.Errorf("invalid create assetJSON string. \nerror: %v\ninput data: %s", err, jsonStr)
 	}
 
-	if _, err := ctx.GetStub().GetState(order.Id); err == nil {
+	if bytes, _ := ctx.GetStub().GetState(order.Id); bytes != nil {
 		return fmt.Errorf("order id already exist. id:: %s", order.Id)
 	}
+
+	fmt.Println("order is not exist, already. we are good to go")
 
 	// Check if warehouse exist with (order.WarehouseId)
 	wh, err := s.readWarehouse(ctx, order.WarehouseId)
 	if err != nil {
-		return fmt.Errorf("failed to read the warehouse data from world state. id: %s", order.WarehouseId)
+		return fmt.Errorf("failed to read the warehouse data from world state. id: %s \n error: %v", order.WarehouseId, err)
 	}
 
 	if wh.Status != Operational {
@@ -66,7 +72,8 @@ func (s *OrderContract) PlaceOrder(
 	// update warehouse allocated space
 	wh.General.AllocatedArea += order.Space
 	if err := s.updateWarehouse(ctx, wh.Id, wh); err != nil {
-		return fmt.Errorf("failed to update the warehouse allocated space")
+		fmt.Printf("error: %v \n", err)
+		return fmt.Errorf("failed to update the warehouse allocated space. \n error: %v", err)
 	}
 
 	bytes, err := json.Marshal(order)
@@ -77,6 +84,8 @@ func (s *OrderContract) PlaceOrder(
 	if err := ctx.GetStub().PutState(order.Id, bytes); err != nil {
 		return fmt.Errorf("could not write the order to world state")
 	}
+
+	fmt.Println("order placed successfully")
 
 	return nil
 }

@@ -8,7 +8,7 @@ import (
 
 func (h *Handler) ReadAllOrders(w http.ResponseWriter, r *http.Request) {
 
-	result, err := h.ccOrder.EvaluateTransaction("ReadAllOrders")
+	result, err := h.ccWarehouse.EvaluateTransaction("ReadAllCustomerOrders")
 	if err != nil {
 		httputils.HttpResponse(w, err.Error(), http.StatusBadRequest)
 		return

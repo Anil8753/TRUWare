@@ -5,7 +5,7 @@ const (
 	WHUpdateMSP       = "admin-truware-com"
 	WHOwnerReadAllMSP = "admin-truware-com"
 
-	ECUsers = "crwc-truware-com"
+	ECOwnersMSP = "crwc-truware-com"
 )
 
 const AssetType = "warehouse"

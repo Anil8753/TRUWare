@@ -8,7 +8,7 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-// CreateAsset issues a new asset to the world state with given details.
+// UpdateAsset issues a new asset to the world state with given details.
 // {
 // 	"id":"100",
 // 	"status":0,
@@ -44,7 +44,7 @@ func (s *WarehouseContract) UpdateAsset(
 	}
 
 	// Read existing
-	asset, err := s.readOwnerAsset(ctx, id)
+	asset, err := s.ReadAsset(ctx, id)
 	if err != nil {
 		return err
 	}

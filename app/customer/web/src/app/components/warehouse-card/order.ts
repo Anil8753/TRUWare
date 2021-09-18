@@ -1,23 +1,8 @@
 export class Order {
-	id   :             string     
-	// type :            string    
-	warehouseId:        string      
-	// customerId  :       string     
-	value        :     number     
-	// rate          :     number    
-	space          :    number         
-	duration        :   number         
-	// panalityAfterLimit: number    
-	// panalityPremature  :number     
-	// status             :OrderStatus 
+	id   :      string     
+	warehouseId:   string      
+	value    :     number     
+	space  :    number         
+	duration  :   number
+	comments: string      
 }
-
-
-// export enum OrderStatus {
-// 	Placed ,
-// 	Approved,
-// 	Rejected,
-// 	Completed,
-// 	PrematureClosed,
-// 	AfterLimit,
-// }

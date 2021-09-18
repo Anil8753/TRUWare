@@ -20,8 +20,7 @@ func (s *OrderContract) ReadAllOrders(
 		return nil, fmt.Errorf("unauthorized user mspId: %s", mspId)
 	}
 
-	query := fmt.Sprintf(`{ "selector":{ "customerId": "%s" }, { "type": "order" }}`, identity)
-	// query := fmt.Sprintf("{\"selector\":{\"customerId\":\"%s\"}, {\"type\":\"order\"}}", identity)
+	query := fmt.Sprintf(`{ "selector":{ "customerId": "%s", "type": "order" }}`, identity)
 
 	itr, err := ctx.GetStub().GetQueryResult(query)
 	if err != nil {

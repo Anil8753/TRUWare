@@ -12,14 +12,14 @@ func (s *WarehouseContract) ReadAllAssets(
 	ctx contractapi.TransactionContextInterface,
 ) ([]Asset, error) {
 
-	_, _, err := GetInvokerIdentity(ctx)
+	_, mspId, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get identity. %v", err)
 	}
 
-	// if mspId != ECUsers {
-	// 	return nil, fmt.Errorf("unauthorized user mspId: %s", mspId)
-	// }
+	if mspId != ECOwnersMSP {
+		return nil, fmt.Errorf("unauthorized user mspId: %s", mspId)
+	}
 
 	query := "{\"selector\":{\"type\":\"warehouse\"}}"
 	itr, err := ctx.GetStub().GetQueryResult(query)

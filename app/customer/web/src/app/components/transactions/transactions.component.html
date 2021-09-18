@@ -1,1 +1,56 @@
-<p>transactions works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Transactions</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body txn-body">
+    <div>
+        <span class="text-success ml-1"><b>Active Order(s)</b></span>
+        <div *ngFor="let txn of activeTxns" class="card shadow txn-active">
+            <div class="txt-entry">Txn: {{txn.id}}</div>
+            <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
+            <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
+            <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
+            <div class="txt-entry">Duration: {{txn.duration}} days</div>
+            <div class="txt-entry">Precloser penality: {{txn.panalityPremature}}% of the total booking</div>
+            <div class="txt-entry">Comments: {{txn.conmments}}</div>
+
+            <div *ngIf="txn.status == 0">
+                <button type="button" class="btn btn-outline-danger btn-sm txt-action-btn "
+                    (click)="onCancelBooking(txn.id)">Cancel Booking</button>
+            </div>
+        </div>
+
+        <div *ngIf="activeTxns" class="txt-no-booking">
+            <span>No active booking</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div>
+        <span class="text-secondary ml-1"><b>Other historical transactions</b></span>
+        <div *ngFor="let txn of nonActiveTxns" class="card shadow txn-non-active">
+            <div class="txt-entry">Txn: {{txn.id}}</div>
+            <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
+            <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
+            <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
+            <div class="txt-entry">Duration: {{txn.duration}} days</div>
+            <div class="txt-entry">Precloser penality: {{txn.panalityPremature}}% of the total booking</div>
+            <div class="txt-entry">Comments: {{txn.conmments}}</div>
+
+            <div *ngIf="txn.status == 0">
+                <button type="button" class="btn btn-outline-danger btn-sm txt-action-btn "
+                    (click)="onCancelBooking(txn.id)">Cancel Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- {{activeTxns | json}} -->
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary btn-sm"
+        (click)="activeModal.close('Close click')">Close</button>
+</div>

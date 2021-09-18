@@ -8,7 +8,7 @@ import (
 )
 
 // readOwnerAsset returns the asset stored in the world state with given id.
-func (s *WarehouseContract) readOwnerAsset(
+func (s *WarehouseContract) ReadAsset(
 	ctx contractapi.TransactionContextInterface,
 	id string,
 ) (*Asset, error) {

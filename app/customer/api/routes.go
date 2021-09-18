@@ -19,7 +19,7 @@ func RegisterWarehouseRoutes(r *mux.Router) error {
 
 	r.HandleFunc("/api/orders", h.ReadAllOrders).Methods("GET")
 	r.HandleFunc("/api/order", h.PlaceOrder).Methods("POST")
-	r.HandleFunc("/api/order/prematureclose/{id}", h.PrematureClose).Methods("PUT")
+	r.HandleFunc("/api/order/cancel/{id}", h.CancelOrder).Methods("PUT")
 
 	return nil
 }

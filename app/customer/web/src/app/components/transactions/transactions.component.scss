@@ -1,0 +1,34 @@
+.txn-body {
+    height: 60vh;
+    overflow-y: scroll;
+}
+
+.txt-entry {
+    margin-top: 2px;
+    font-size: small;
+}
+
+.txt-action-btn  {
+    float: right;
+    font-size: x-small;
+}
+
+.txn-active {
+    padding: 25px;
+    margin: 10px;
+    background-color: rgba(0, 128, 0, 0.089);
+}
+
+.txn-non-active {
+    padding: 25px;
+    margin: 10px;
+    background-color: rgba(128, 128, 128, 0.116);
+}
+
+.txt-no-booking{
+    margin: 5px;
+    text-align: center;
+    font-size: large;
+    font-family: cursive;
+    color: rgb(202, 180, 180);
+}

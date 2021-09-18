@@ -18,6 +18,7 @@ export class BookSpaceComponent implements OnInit {
 
   order: Order;
   duration: number;
+  comments: string;
   space: number;
   cost: number;
 
@@ -46,6 +47,7 @@ export class BookSpaceComponent implements OnInit {
   bookSpace() {
     this.order = new Order;
     this.order.id = this.utils.getUUID();
+    this.order.comments = this.comments;
     this.order.duration = this.duration;
     this.order.space = this.space;
     this.order.value = this.space * this.warehouse.generalInfo.rate;
@@ -68,6 +70,8 @@ export class BookSpaceComponent implements OnInit {
         this.activeModal.close(this.order);
         this.spinner.hide();
         this.toast.success('Warehouse data saved succesfully.', 'SUCCESS');
+
+        setTimeout(()=>{ window.location.reload(); }, 500);
       },
       err=>{
         this.spinner.hide();
@@ -89,7 +93,7 @@ export class BookSpaceComponent implements OnInit {
 
     const available = this.warehouse.generalInfo.totalArea - this.warehouse.generalInfo.allocatedArea;
 
-    if (this.order.space > this.warehouse.generalInfo.totalArea - available)
+    if (this.order.space > available)
       return { status:false, message:`Cannot book the space more than available space`};
 
     return { status: true, message: ''};

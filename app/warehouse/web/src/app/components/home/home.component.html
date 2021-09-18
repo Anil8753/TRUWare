@@ -11,7 +11,8 @@
                     <fa-icon [icon]="iconWarehouseAdd" size="lg"></fa-icon>
                 </button>
 
-                <button type="button" class="btn btn-outline-primary btn-sm  tool-btn ml-2" (click)="onUpdate()">
+                <button *ngIf="assets && assets.length" type="button"
+                    class="btn btn-outline-primary btn-sm  tool-btn ml-2" (click)="onUpdate()">
                     <fa-icon [icon]="faEdit" size="lg"></fa-icon>
                 </button>
 
