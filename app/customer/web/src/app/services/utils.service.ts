@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { isDevMode } from '@angular/core';
 import {v4 as uuidv4} from 'uuid';
@@ -7,7 +8,9 @@ import {v4 as uuidv4} from 'uuid';
 })
 export class UtilsService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   baseUrl(): string{
     return isDevMode() ? 'http://localhost:8082' : 'http://localhost:8082';
@@ -16,5 +19,25 @@ export class UtilsService {
   getUUID():string {
     return uuidv4();
   }
+
+  async getWallet(): Promise<WalletEntry> {
+
+    try {
+      const url = `${this.baseUrl()}/api/wallet`;
+      const res = await this.http.get<any>(url).toPromise();
+      return JSON.parse(res.message) as WalletEntry;
+    } catch (e){
+      console.error(e);
+    }
+
+    return null
+  }
 }
+
+export interface WalletEntry {
+  owner: string;
+  balance: number;
+  refNo: string;
+}
+
  

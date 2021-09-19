@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from 'src/app/services/spinner.service';
-import { UtilsService } from 'src/app/services/utils.service';
+import { UtilsService, WalletEntry } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-wallet',
@@ -32,11 +32,8 @@ export class WalletComponent implements OnInit {
   async init() {
 
     try {
-      const url = `${this.utils.baseUrl()}/api/wallet`;
-      const res = await this.http.get<any>(url).toPromise();
-      this.we = JSON.parse(res.message) as WalletEntry;
+      this.we = await this.utils.getWallet()
     } catch (e){
-      this.we = null
       console.error(e);
     }
   }
@@ -80,10 +77,4 @@ export class WalletComponent implements OnInit {
       console.error(e);
     };
   }
-}
-
-interface WalletEntry {
-  owner: string;
-  balance: number;
-  refNo: string;
 }

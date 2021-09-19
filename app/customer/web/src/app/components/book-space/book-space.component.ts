@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from 'src/app/services/spinner.service';
-import { UtilsService } from 'src/app/services/utils.service';
+import { UtilsService, WalletEntry } from 'src/app/services/utils.service';
 import { Order } from '../warehouse-card/order';
 import { Warehouse } from '../warehouse-card/warehouse';
 
@@ -44,13 +44,13 @@ export class BookSpaceComponent implements OnInit {
     }
   }
 
-  bookSpace() {
+  async bookSpace() {
     this.order = new Order;
     this.order.id = this.utils.getUUID();
     this.order.comments = this.comments;
     this.order.duration = this.duration;
     this.order.space = this.space;
-    this.order.value = this.space * this.warehouse.generalInfo.rate;
+    this.order.value = this.space * this.duration *this.warehouse.generalInfo.rate;
     this.order.warehouseId = this.warehouse.id;
     console.log(this.order);
 
@@ -61,8 +61,20 @@ export class BookSpaceComponent implements OnInit {
      }
   
       this.spinner.show();
+     
+      const we = await this.utils.getWallet();
+      if (!we) {
+        this.spinner.hide();
+        this.toast.error('Wallet is not available.', 'ERROR');
+        return;
+      }
 
-  
+      if (we.balance < this.order.value) {
+        this.spinner.hide();
+        this.toast.error('Not enough wallet balance, please reload your wallet.', 'ERROR');
+        return;
+      }
+
       const url = `${this.utils.baseUrl()}/api/order`;
   
       this.http.post(url, this.order)
@@ -96,6 +108,7 @@ export class BookSpaceComponent implements OnInit {
     if (this.order.space > available)
       return { status:false, message:`Cannot book the space more than available space`};
 
+    
     return { status: true, message: ''};
   }
 }
