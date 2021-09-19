@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
@@ -44,9 +45,10 @@ func (s *WarehouseContract) CancelOrder(
 	order.Conmments = comments
 
 	tokenPenality := (order.Value * order.PanalityPremature / 100)
-	log.Println("---------------------------------------------------------")
-	log.Println("token panality because of premature closer", tokenPenality)
-	log.Println("---------------------------------------------------------")
+
+	if err := s.TransferToken(ctx, wh.OwnerId, strconv.Itoa(int(tokenPenality)), order.Conmments); err != nil {
+		return fmt.Errorf("failed to transfer token. %v", err)
+	}
 
 	bytes, err := json.Marshal(order)
 	if err != nil {

@@ -1,1 +1,39 @@
-<p>wallet works!</p>
+<div class="modal-header">
+    <h6 class="modal-title">Wallet</h6>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body txn-body">
+
+    <span *ngIf="!we" class="ml-3"><b>Do not have any token in your account</b></span>
+    <span *ngIf="we" class="ml-3"><b>Current balance: <span style="font-size: large;">{{we.balance}} TW </span>
+            Token</b></span>
+    <!-- <button type="button" class="btn btn-link buy-more" (click)="enableBuyMore()">Buy more</button> -->
+
+    <div class="m-3">
+        <div class="text-muted">Buy more TW tokens</div>
+        <div class="d-flex">
+            <div>
+                <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter Amount"
+                    [(ngModel)]="amount">
+            </div>
+            <div class="flex-grow-1 ml-1">
+                <input type="text" class="form-control form-control-sm" placeholder="NEFT/RTGS Ref No"
+                    [(ngModel)]="refNo">
+            </div>
+
+            <button type="button" class="btn btn-outline-danger btn-sm w-action-btn" (click)="onBuyMore()">Buy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-link btn-sm" style="float: left;" (click)="onLiquidate()">Liquidate
+        Tokens</button>
+
+    <button type="button" class="btn btn-outline-primary btn-sm"
+        (click)="activeModal.close('Close click')">Close</button>
+</div>

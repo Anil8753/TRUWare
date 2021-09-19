@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
@@ -69,6 +70,11 @@ func (s *WarehouseContract) PlaceOrder(
 	order.PanalityAfterLimit = wh.General.PanalityAfterLimit
 	order.PanalityPremature = wh.General.PanalityPremature
 
+	// Transfer token
+	if err := s.TransferToken(ctx, wh.OwnerId, strconv.Itoa(int(order.Value)), order.Conmments); err != nil {
+		return fmt.Errorf("failed to transfer token. %v", err)
+	}
+
 	bytes, err := json.Marshal(order)
 	if err != nil {
 		return fmt.Errorf("failed to marshal order. %v", order)
@@ -94,54 +100,3 @@ func (s *WarehouseContract) PlaceOrder(
 
 	return nil
 }
-
-// package main
-
-// import (
-// 	"encoding/json"
-// 	"errors"
-// 	"fmt"
-// 	"strconv"
-
-// 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
-// )
-
-// func (s *WarehouseContract) PlaceOrder(
-// 	ctx contractapi.TransactionContextInterface,
-// 	id string,
-// 	space string,
-// ) error {
-
-// 	_, mspId, err := GetInvokerIdentity(ctx)
-// 	if err != nil {
-// 		return fmt.Errorf("failed to get identity. %v", err)
-// 	}
-
-// 	if mspId != ECOwnersMSP {
-// 		return fmt.Errorf("unauthorized user mspId: %s", mspId)
-// 	}
-
-// 	// Read existing
-// 	asset, err := s.ReadAsset(ctx, id)
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	if asset == nil {
-// 		return errors.New("the asset does not exist")
-// 	}
-
-// 	var _space int
-// 	_space, err = strconv.Atoi(space)
-// 	if err != nil {
-// 		return fmt.Errorf("invalid space is requested. %v", err)
-// 	}
-
-// 	asset.General.AllocatedArea += _space
-// 	bytes, err := json.Marshal(asset)
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	return ctx.GetStub().PutState(asset.Id, bytes)
-// }
