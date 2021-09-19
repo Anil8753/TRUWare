@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 
 	httputils "github.com/Anil8753/truware/app/server/utils/http"
@@ -29,7 +28,6 @@ func (h *Handler) BuyTokens(w http.ResponseWriter, r *http.Request) {
 		RefNo  string `json:"refNo"`
 	}
 
-	log.Println("Buy token API call")
 	bytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		httputils.HttpResponse(w, err.Error(), http.StatusBadRequest)

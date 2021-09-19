@@ -9,8 +9,8 @@ import (
 
 func (s *WarehouseContract) TransferToken(
 	ctx contractapi.TransactionContextInterface,
-	amount string,
 	receiver string,
+	amount string,
 	refNo string,
 ) error {
 
