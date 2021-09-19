@@ -10,6 +10,7 @@
         <div *ngFor="let txn of activeTxns" class="card shadow txn-active">
             <div class="txt-entry-s">Status: {{getStatusLabel(txn.status)}}</div>
             <div class="txt-entry">Txn: {{txn.id}}</div>
+            <div class="txt-entry">Order amount: {{txn.value}}</div>
             <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
             <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
             <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
