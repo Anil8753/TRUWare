@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   onOpenWallet() {
-    this.modalService.open(WalletComponent, { backdrop:'static'});
+    this.modalService.open(WalletComponent, { backdrop:'static', size: '500px'});
   }
   
   onShowTransactions() {

@@ -1,0 +1,109 @@
+<hr>
+<div class="border p-2" style="font-size: small;">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills">
+        <li ngbNavItem="top">
+            <a ngbNavLink>Credit Card</a>
+            <ng-template ngbNavContent>
+                <div id="credit-card" class="tab-pane show active pt-3">
+                    <form role="form" onsubmit="event.preventDefault()">
+                        <div class="form-group">
+                            <input type="text" name="username" placeholder="Card Owner Name" required
+                                class="form-control form-control-sm ">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-sm ">
+                                <!-- <input type="text" name="cardNumber" placeholder="Valid card number" required> -->
+
+                                <div class="input-group-append w-100">
+                                    <input type="text" name="cardNumber" class="w-100" placeholder="Valid card number"
+                                        required>
+                                    <span class="input-group-text text-muted ">
+                                        <i class="fab fa-cc-visa mx-1"></i>
+                                        <i class="fab fa-cc-mastercard mx-1"></i>
+                                        <i class="fab fa-cc-amex mx-1"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+
+                                    <div class="input-group"> <input type="number" placeholder="MM" name=""
+                                            class="form-control form-control-sm " required>
+                                        <input type="number" placeholder="YY" name=""
+                                            class="form-control form-control-sm " required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-4">
+                                    <input type="text" placeholder="CVV" required class="form-control form-control-sm ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer"> <button type="button"
+                                class="subscribe btn btn-primary btn-sm btn-block shadow-sm"> Confirm Payment </button>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+        </li>
+        <li ngbNavItem="middle">
+            <a ngbNavLink>Paypal</a>
+            <ng-template ngbNavContent>
+                <div class="tab-pane pt-3">
+                    <span class="">Select your paypal account type</span>
+                    <div class="form-group mt-2">
+                        <label class="radio-inline"> <input type="radio" name="optradio" checked>
+                            Domestic </label>
+                        <label class="radio-inline"> <input type="radio" name="optradio" class="ml-5">International
+                        </label>
+                    </div>
+                    <p>
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <i class="fab fa-paypal mr-2"> </i>
+                            Log into my Paypal</button>
+                    </p>
+                    <p class="text-muted"> Note: After clicking on the button, you will be directed to a secure
+                        gateway for payment. After completing the payment process, you will be redirected back
+                        to the website to view details of your order.
+                    </p>
+                </div>
+            </ng-template>
+        </li>
+        <li ngbNavItem="bottom">
+            <a ngbNavLink>Net Banking</a>
+            <ng-template ngbNavContent>
+                <!-- bank transfer info -->
+                <div id="net-banking" class="tab-pane pt-3">
+                    <div class="form-group ">
+                        <label for="Select Your Bank">
+                            <span>Select your Bank</span>
+                        </label>
+                        <select class="form-control form-control-sm" id="ccmonth">
+                            <option value="" selected disabled>--Please select your Bank--</option>
+                            <option>HDFC Bank Ltd</option>
+                            <option>ICICI Bank Ltd</option>
+                            <option>State Bank of India</option>
+                            <option>Kotak Mahendra Bank</option>
+                            <option>Axis Bank Ltd</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-mobile-alt mr-2"></i>
+                                Proceed Payment</button>
+                        </p>
+                    </div>
+                    <p class="text-muted">Note: After clicking on the button, you will be directed to a secure
+                        gateway for payment. After completing the payment process, you will be redirected back
+                        to the website to view details of your order. </p>
+                </div> <!-- End -->
+                <!-- End -->
+            </ng-template>
+        </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="ml-4"></div>
+</div>

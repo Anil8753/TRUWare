@@ -25,6 +25,7 @@ import { WarehouseCardComponent } from './components/warehouse-card/warehouse-ca
 import { BookSpaceComponent } from './components/book-space/book-space.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { WalletComponent } from './components/wallet/wallet.component';
+import { PaymentMethodComponent } from './components/wallet/payment-method/payment-method.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { WalletComponent } from './components/wallet/wallet.component';
     BookSpaceComponent,
     TransactionsComponent,
     WalletComponent,
+    PaymentMethodComponent,
   ],
   imports: [
     BrowserModule,
