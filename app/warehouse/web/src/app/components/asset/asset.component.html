@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <h4 *ngIf="!edit" class="modal-title">Warehouse Registration</h4>
-    <h4 *ngIf="edit" class="modal-title">Update Warehouse Details</h4>
+    <h6 *ngIf="!edit" class="modal-title">Warehouse Registration</h6>
+    <h6 *ngIf="edit" class="modal-title">Update Warehouse Details</h6>
     <button type="button" class="close" aria-label="Close" (click)="onDismiss()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -104,5 +104,5 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark btn-sm" (click)="onSubmit()">Submit</button>
+    <button type="button" class="btn btn-outline-primary btn-sm" (click)="onSubmit()">Submit</button>
 </div>

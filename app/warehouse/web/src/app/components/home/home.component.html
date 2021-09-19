@@ -7,20 +7,39 @@
         <div class="col-8">
             <div class="d-flex flex-row-reverse">
 
-                <button class="btn btn-outline-primary btn-sm tool-btn ml-2" (click)="onAddNew()">
-                    <fa-icon [icon]="iconWarehouseAdd" size="lg"></fa-icon>
-                </button>
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary btn-sm tool-btn ml-2" ngbDropdownToggle>
+                        <fa-icon [icon]="iconMore" size="lg"></fa-icon>
+                    </button>
+                    <div ngbDropdownMenu>
+                        <button ngbDropdownItem class="btn-sm" (click)="onUpdate()">Update Warehouse details</button>
+                        <button ngbDropdownItem class="btn-sm" (click)="onAddNew()">Add new warehouse</button>
+                    </div>
+                </div>
 
-                <button *ngIf="assets && assets.length" type="button"
-                    class="btn btn-outline-primary btn-sm  tool-btn ml-2" (click)="onUpdate()">
-                    <fa-icon [icon]="faEdit" size="lg"></fa-icon>
-                </button>
-
-                <select class="form-control form-control-sm  ml-2" style="width:200px;"
+                <select class="form-control form-control-sm ml-2" style="width:200px;"
                     (change)="onChange($event.target.value)">
                     <option *ngFor="let asset of assets; let i= index" [value]="i">{{asset.generalInfo.name}}
                     </option>
                 </select>
+
+                <!-- <button *ngIf="assets && assets.length" type="button"
+                    class="btn btn-outline-primary btn-sm  tool-btn ml-2" (click)="onUpdate()">
+                    <fa-icon [icon]="faEdit" size="lg"></fa-icon>
+                </button>
+
+                <button class="btn btn-outline-primary btn-sm tool-btn ml-2" (click)="onAddNew()">
+                    <fa-icon [icon]="iconWarehouseAdd" size="lg"></fa-icon>
+                </button> -->
+
+                <button class="btn btn-outline-primary btn-sm tool-btn ml-2" (click)="onWallet()">
+                    <fa-icon [icon]="iconWallet" size="lg"></fa-icon>
+                </button>
+
+                <button *ngIf="assets && assets.length" class="btn btn-outline-primary btn-sm tool-btn ml-2"
+                    (click)="onTxns()">
+                    <fa-icon [icon]="iconTxn" size="lg"></fa-icon>
+                </button>
             </div>
         </div>
     </div>

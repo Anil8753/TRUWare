@@ -4,8 +4,10 @@ import { AssetComponent } from '../asset/asset.component';
 import { Asset, GeneralInfo, Postion } from 'src/app/components/asset/asset';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from 'src/app/services/utils.service';
-import { faEdit, faWarehouse } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faWallet, faList } from '@fortawesome/free-solid-svg-icons';
 import * as cloneDeep from 'lodash/cloneDeep';
+import { WalletComponent } from '../wallet/wallet.component';
+import { TransactionsComponent } from '../transactions/transactions.component';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +16,9 @@ import * as cloneDeep from 'lodash/cloneDeep';
 })
 export class HomeComponent implements OnInit {
 
-  faEdit = faEdit;
-  iconWarehouseAdd = faWarehouse;
+  iconTxn = faBookOpen;
+  iconWallet = faWallet;
+  iconMore = faList;
 
   selected: Asset;
   assets: Asset[];
@@ -102,6 +105,14 @@ export class HomeComponent implements OnInit {
     .catch(e=>{
       alert(JSON.stringify(e));
     });
+  }
+
+  onWallet() {
+    this.modalService.open(WalletComponent, { backdrop: 'static'});
+  }
+
+  onTxns() {
+    this.modalService.open(TransactionsComponent, { backdrop: 'static', size:'lg'});
   }
 }
 

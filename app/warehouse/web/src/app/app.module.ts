@@ -21,6 +21,8 @@ import { WarehouseDetailsComponent } from './components/warehouse-details/wareho
 import { FooterComponent } from './components/footer/footer.component';
 import { RatingsComponent } from './components/ratings/ratings.component';
 import { SensorsComponent } from './components/sensors/sensors.component';
+import { WalletComponent } from './components/wallet/wallet.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { SensorsComponent } from './components/sensors/sensors.component';
     FooterComponent,
     RatingsComponent,
     SensorsComponent,
+    WalletComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,
