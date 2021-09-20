@@ -8,13 +8,20 @@
     <!-- <small class="text-muted">Order details</small>
     <hr> -->
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <small class="text-muted">Enter required space (sqft) details</small>
+        <div class="form-group col-md-4">
+            <small class="text-muted">Required space (sqft)</small>
             <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter space sqft"
                 [(ngModel)]="space" is-invalid required>
         </div>
-        <div class="form-group col-md-6">
-            <small class="text-muted">Enter duration (days)</small>
+
+        <div class="form-group col-md-4">
+            <small class="text-muted">Start Date</small>
+            <input type="date" class="form-control form-control-sm" placeholder="Enter duration" [(ngModel)]="date"
+                is-invalid required>
+        </div>
+
+        <div class="form-group col-md-4">
+            <small class="text-muted">Duration (days)</small>
             <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter duration"
                 [(ngModel)]="duration" is-invalid required>
         </div>

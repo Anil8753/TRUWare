@@ -17,6 +17,7 @@ export class BookSpaceComponent implements OnInit {
   @Input() warehouse: Warehouse;
 
   order: Order;
+  date: string;
   duration: number;
   comments: string;
   space: number;
@@ -34,6 +35,7 @@ export class BookSpaceComponent implements OnInit {
     this.duration = 0;
     this.space = 0;
     this.cost = 0;
+    this.date = '';
 
     if (!this.warehouse.generalInfo.panalityPremature) {
       this.warehouse.generalInfo.panalityPremature = 0;
@@ -45,9 +47,11 @@ export class BookSpaceComponent implements OnInit {
   }
 
   async bookSpace() {
+
     this.order = new Order;
     this.order.id = this.utils.getUUID();
     this.order.comments = this.comments;
+    this.order.date = this.date;
     this.order.duration = this.duration;
     this.order.space = this.space;
     this.order.value = this.space * this.duration *this.warehouse.generalInfo.rate;
@@ -96,6 +100,9 @@ export class BookSpaceComponent implements OnInit {
 
     if (this.order.space <= 0)
       return { status:false, message:`Please enter the valid warehouse space`};
+
+    if (!this.order.date || this.order.date === '')
+      return { status:false, message:`Please enter valid start date`};
 
     if (!this.order.duration)
       return { status:false, message:`Please enter valid duration`};
