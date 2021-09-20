@@ -7,21 +7,39 @@
 <div class="modal-body txn-body">
     <div>
         <span class="text-success ml-1"><b>Active Order(s)</b></span>
-        <div *ngFor="let txn of activeTxns" class="card shadow txn-active">
-            <div class="txt-entry-s">Status: {{getStatusLabel(txn.status)}}</div>
-            <div class="txt-entry">Txn: {{txn.id}}</div>
-            <div class="txt-entry">Order amount: {{txn.value}}</div>
-            <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
-            <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
-            <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
-            <div class="txt-entry">Duration: {{txn.duration}} days</div>
-            <div class="txt-entry">Precloser penality: {{txn.panalityPremature}}% of the total booking</div>
-            <div class="txt-entry">Comments: {{txn.conmments}}</div>
+        <div *ngFor="let txn of activeTxns" class="shadow txn-active">
 
-            <div *ngIf="txn.status == 0">
-                <button type="button" class="btn btn-outline-danger btn-sm txt-action-btn "
-                    (click)="onCancelBooking(txn.id)">Cancel Booking</button>
+            <div class="row">
+                <div class="col-6">
+                    <div class="txt-entry">Status: <span class="txt-entry-s">{{getStatusLabel(txn.status)}}</span></div>
+                    <div class="txt-entry">Date: 25/12/2021</div>
+                    <div class="txt-entry">Txn: {{txn.id}}</div>
+                    <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
+                    <div class="txt-entry">Comments: {{txn.conmments}}</div>
+                </div>
+
+                <div class="col-4">
+                    <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
+                    <div class="txt-entry">Order amount: <b>{{txn.value}} TW</b></div>
+                    <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
+                    <div class="txt-entry">Duration: {{txn.duration}} days</div>
+                    <div class="txt-entry">Precloser penality: {{txn.panalityPremature}}% of the total booking</div>
+                </div>
+
+                <div class="col-2">
+                    <div>
+                        <button type="button" class="btn btn-outline-info btn-sm btn-block txt-action-btn ">
+                            More details
+                        </button>
+                    </div>
+
+                    <div *ngIf="txn.status == 0" class="">
+                        <button type="button" class="btn btn-outline-danger btn-sm btn-block txt-action-btn mt-1"
+                            (click)="onCancelBooking(txn.id)">Cancel space</button>
+                    </div>
+                </div>
             </div>
+
         </div>
 
         <div *ngIf="!activeTxns || activeTxns.length===0" class="txt-no-booking">
@@ -33,19 +51,30 @@
 
     <div>
         <span class="text-secondary ml-1"><b>Other historical transactions</b></span>
-        <div *ngFor="let txn of nonActiveTxns" class="card shadow txn-non-active">
-            <div class="txt-entry-s">Status: {{getStatusLabel(txn.status)}}</div>
-            <div class="txt-entry">Txn: {{txn.id}}</div>
-            <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
-            <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
-            <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
-            <div class="txt-entry">Duration: {{txn.duration}} days</div>
-            <div class="txt-entry">Precloser penality: {{txn.panalityPremature}}% of the total booking</div>
-            <div class="txt-entry">Comments: {{txn.conmments}}</div>
+        <div *ngFor="let txn of nonActiveTxns" class="shadow txn-non-active">
 
-            <div *ngIf="txn.status == 0">
-                <button type="button" class="btn btn-outline-danger btn-sm txt-action-btn "
-                    (click)="onCancelBooking(txn.id)">Cancel Booking</button>
+            <div class="row">
+                <div class="col-6">
+                    <div class="txt-entry">Status: <span class="txt-entry-s">{{getStatusLabel(txn.status)}}</span></div>
+                    <div class="txt-entry">Date: 25/12/2021</div>
+                    <div class="txt-entry">Txn: {{txn.id}}</div>
+                    <div class="txt-entry">Warehouse: {{txn.warehouseId}}</div>
+                    <div class="txt-entry">Comments: {{txn.conmments}}</div>
+                </div>
+
+                <div class="col-4">
+                    <div class="txt-entry">Space booked: {{txn.space}} sqft</div>
+                    <div class="txt-entry">Order amount: <b>{{txn.value}} TW</b></div>
+                    <div class="txt-entry">Rate: {{txn.rate}} Rs per sqft</div>
+                    <div class="txt-entry">Duration: {{txn.duration}} days</div>
+                    <div class="txt-entry">Precloser penality: {{txn.panalityPremature}}% of the total booking</div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn btn-outline-info btn-sm btn-block txt-action-btn ">More
+                        details</button>
+                </div>
+
             </div>
         </div>
     </div>
