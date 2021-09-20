@@ -16,13 +16,12 @@ It consists of the following components
   <br/>
   [Chaincode](./chaincode) section describes the neccessary details to develop, deploy and upgrade the chaincodes. [Go](https://golang.org/) is the programming language used for chaincode (smart contract) development.
   
-- API Server
-  <br/>
-  API server implementaion resides under the [api](./app/api) directory. [Go](https://golang.org/) is the programming language used for blockchain interaction and API development.
-  
 - Web Application
   <br/>
-  It serves frontend interface of the blockchain system. It is implemented using [Angular](https://angular.io/). Source code is available in [web](./app/web) directory
+  It has 2 parts, one API server and second Web interface.
+  API server implementaion resides under the [warehouse/api](app/warehouse/api) and [customer/api](./app/customer/api) directories for different nodes. [Go](https://golang.org/) is the programming language used for blockchain interaction and API development.
+  <br/>
+  web It serves frontend interface of the blockchain system. It is implemented using [Angular](https://angular.io/). Source code is available in [app](./app) directory
   
 - Scripts
   <br/>
