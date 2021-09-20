@@ -5,8 +5,40 @@
     </button>
 </div>
 
-<div class="modal-body">
-    dddd
+<div class="modal-body card-height">
+    <div *ngFor="let order of orders">
+
+        <div class="row">
+            <div class="col-6">
+                <div *ngIf="order.status !== 4">Status: <span
+                        class="text-success">{{getStatusLabel(order.status)}}</span></div>
+                <div *ngIf="order.status === 4">Status: <span
+                        class="text-danger">{{getStatusLabel(order.status)}}</span></div>
+
+                <div>Date: 23/12/2021</div>
+                <div>Txn No: {{order.id}}</div>
+                <div>Warehouse: {{order.warehouseId}}</div>
+            </div>
+            <div class="col-4">
+                <div>Amount: <b>{{order.value}} TW</b></div>
+                <div>Rate: {{order.rate}} per sqft</div>
+                <div>Duration: {{order.duration}} days</div>
+                <div>Premature closer penality: {{order.panalityPremature}}%</div>
+            </div>
+
+            <div class="col-2">
+                <button type="button" class="btn btn-outline-info btn-sm txt-btn">More details</button>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+
+    <div *ngIf="!orders || orders.length === 0">
+        <div class="no-txn">
+            No Transactions
+        </div>
+    </div>
 </div>
 
 <div class="modal-footer">

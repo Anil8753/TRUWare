@@ -73,7 +73,7 @@ export class TransactionsComponent implements OnInit {
   getStatusLabel(status: number) {
 
     if (status == 0)
-      return 'Booking is initiated';
+      return 'Booking is confirmed';
 
     if (status == 1)
       return 'Booking is active';
