@@ -7,21 +7,21 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-// ReadAllAssets returns all assets stored in the world state with limited details.
-func (s *WarehouseContract) ReadAllAssets(
+func (s *WarehouseContract) ReadAllWarehouseOrders(
 	ctx contractapi.TransactionContextInterface,
-) ([]Asset, error) {
+) ([]Order, error) {
 
-	_, mspId, err := GetInvokerIdentity(ctx)
+	identity, mspId, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get identity. %v", err)
 	}
 
-	if mspId != ECOwnersMSP {
+	if mspId != WHOwnerReadAllMSP {
 		return nil, fmt.Errorf("unauthorized user mspId: %s", mspId)
 	}
 
-	query := `{ "selector" : { "type": "warehouse" }}`
+	query := fmt.Sprintf(`{ "selector":{ "warehouseOwnerId": "%s", "type": "order" }}`, identity)
+
 	itr, err := ctx.GetStub().GetQueryResult(query)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute query on world state: %v", err)
@@ -29,7 +29,7 @@ func (s *WarehouseContract) ReadAllAssets(
 
 	defer itr.Close()
 
-	assets := make([]Asset, 0)
+	orders := make([]Order, 0)
 
 	for itr.HasNext() {
 
@@ -38,13 +38,13 @@ func (s *WarehouseContract) ReadAllAssets(
 			return nil, fmt.Errorf("failed to iterate the query results: %v", err)
 		}
 
-		asset := Asset{}
-		if err := json.Unmarshal(res.Value, &asset); err != nil {
+		order := Order{}
+		if err := json.Unmarshal(res.Value, &order); err != nil {
 			return nil, fmt.Errorf("failed to parse the query results: %v", err)
 		}
 
-		assets = append(assets, asset)
+		orders = append(orders, order)
 	}
 
-	return assets, nil
+	return orders, nil
 }

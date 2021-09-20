@@ -65,6 +65,7 @@ func (s *WarehouseContract) PlaceOrder(
 	order.Status = Placed
 	order.CustomerId = identity
 	order.WarehouseId = wh.Id
+	order.WarehouseOwnerId = wh.OwnerId
 	order.Rate = wh.General.Rate
 	order.Value = wh.General.Rate * float64(order.Space*order.Duration)
 	order.PanalityAfterLimit = wh.General.PanalityAfterLimit

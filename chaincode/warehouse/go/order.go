@@ -4,6 +4,7 @@ type Order struct {
 	Id                 string      `json:"id"`
 	Type               string      `json:"type"`
 	WarehouseId        string      `json:"warehouseId"`
+	WarehouseOwnerId   string      `json:"warehouseOwnerId"`
 	CustomerId         string      `json:"customerId"`
 	Value              float64     `json:"value"`
 	Rate               float64     `json:"rate"`

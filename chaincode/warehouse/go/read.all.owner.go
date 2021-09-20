@@ -21,7 +21,7 @@ func (s *WarehouseContract) ReadAllOwnerAssets(
 		return nil, fmt.Errorf("unauthorized user mspId: %s", mspId)
 	}
 
-	query := fmt.Sprintf("{\"selector\":{\"ownerId\":\"%s\"}}", identity)
+	query := fmt.Sprintf(`{ "selector" : { "ownerId": "%s", "type": "warehouse" }}`, identity)
 	itr, err := ctx.GetStub().GetQueryResult(query)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute query on world state: %v", err)
