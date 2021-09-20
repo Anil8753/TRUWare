@@ -22,7 +22,7 @@ It consists of the following components
   
 - Web Application
   <br/>
-  It serves frontend interface of the blockchain system. It is implemented using [Angular](https://angular.io/). Source code is available in [web](./app/web) directory
+  It serves frontend interface of the blockchain system. It is implemented using [Angular](https://angular.io/). Source code is available in [web](./app) directory
   
 - Scripts
   <br/>
