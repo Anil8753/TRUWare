@@ -60,8 +60,8 @@ func (s *WarehouseContract) PlaceOrder(
 		return fmt.Errorf("not enough space.\n requested: %d. available: %d", order.Space, available)
 	}
 
-	// Read customer identity details
-	ie, err := s.ReadOwnerIdentity(ctx)
+	// Read customer registration details
+	ie, err := s.ReadOwnerRegistration(ctx)
 	if err != nil {
 		return err
 	}

@@ -6,21 +6,21 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-func (s *WarehouseContract) ReadOwnerIdentity(
+func (s *WarehouseContract) ReadOwnerRegistration(
 	ctx contractapi.TransactionContextInterface,
-) (*IdentityEntry, error) {
+) (*RegistrationEntry, error) {
 
 	identity, _, err := GetInvokerIdentity(ctx)
 	if err != nil {
-		return nil, fmt.Errorf("failed to get identity. %v", err)
+		return nil, fmt.Errorf("failed to get registration. %v", err)
 	}
 
 	// Read sender
-	is, err := ReadIdentityStore(ctx)
+	rs, err := ReadRegistrationStore(ctx)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read the identity store. %v", err)
+		return nil, fmt.Errorf("failed to read the registration store. %v", err)
 	}
 
-	ie := is[identity]
-	return &ie, nil
+	re := rs[identity]
+	return &re, nil
 }

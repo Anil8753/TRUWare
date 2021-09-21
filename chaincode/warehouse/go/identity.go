@@ -6,7 +6,7 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-type IdentityEntry struct {
+type RegistrationEntry struct {
 	Name      string `json:"name"`
 	Address   string `json:"address"`
 	Contact   string `json:"contact"`
@@ -15,39 +15,39 @@ type IdentityEntry struct {
 }
 
 const (
-	IdentityKey = "identity"
+	RegistrationKey = "registration"
 )
 
-type IdentityStore map[string]IdentityEntry
+type IdentityStore map[string]RegistrationEntry
 
-func ReadIdentityStore(
+func ReadRegistrationStore(
 	ctx contractapi.TransactionContextInterface,
 ) (IdentityStore, error) {
 
-	bytes, err := ctx.GetStub().GetState(IdentityKey)
+	bytes, err := ctx.GetStub().GetState(RegistrationKey)
 	if err != nil {
 		return nil, err
 	}
 
-	is := make(IdentityStore)
-	if err := json.Unmarshal(bytes, &is); err != nil {
+	rs := make(IdentityStore)
+	if err := json.Unmarshal(bytes, &rs); err != nil {
 		return nil, err
 	}
 
-	return is, nil
+	return rs, nil
 }
 
-func WriteIdentityStore(
+func WriteRegistrationStore(
 	ctx contractapi.TransactionContextInterface,
-	is IdentityStore,
+	rs IdentityStore,
 ) error {
 
-	bytes, err := json.Marshal(is)
+	bytes, err := json.Marshal(rs)
 	if err != nil {
 		return err
 	}
 
-	if err := ctx.GetStub().PutState(IdentityKey, bytes); err != nil {
+	if err := ctx.GetStub().PutState(RegistrationKey, bytes); err != nil {
 		return err
 	}
 

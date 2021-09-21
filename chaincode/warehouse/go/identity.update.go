@@ -8,7 +8,7 @@ import (
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
 
-func (s *WarehouseContract) UpdateOwnerIdentity(
+func (s *WarehouseContract) UpdateOwnerRegistration(
 	ctx contractapi.TransactionContextInterface,
 	jsonStr string,
 ) error {
@@ -18,45 +18,45 @@ func (s *WarehouseContract) UpdateOwnerIdentity(
 		return fmt.Errorf("failed to get identity. %v", err)
 	}
 
-	ie := IdentityEntry{}
-	if err := json.Unmarshal([]byte(jsonStr), &ie); err != nil {
+	re := RegistrationEntry{}
+	if err := json.Unmarshal([]byte(jsonStr), &re); err != nil {
 		return fmt.Errorf("invalid update identity json string. \nerror: %v\ninput data: %s", err, jsonStr)
 	}
 
-	if err := validateIdentityData(&ie); err != nil {
+	if err := validateIdentityData(&re); err != nil {
 		return fmt.Errorf("identity data validation failed. %v", err)
 	}
 
-	is, err := ReadIdentityStore(ctx)
+	rs, err := ReadRegistrationStore(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to read identity store. %v", err)
 	}
 
-	is[identity] = ie
+	rs[identity] = re
 
 	// Read sender
-	if err := WriteIdentityStore(ctx, is); err != nil {
+	if err := WriteRegistrationStore(ctx, rs); err != nil {
 		return fmt.Errorf("failed to read the identity store. %v", err)
 	}
 
 	return nil
 }
 
-func validateIdentityData(ie *IdentityEntry) error {
+func validateIdentityData(re *RegistrationEntry) error {
 
-	if ie.Name == "" {
+	if re.Name == "" {
 		return errors.New("name cannot be empty")
 	}
 
-	if ie.Address == "" {
+	if re.Address == "" {
 		return errors.New("address cannot be empty")
 	}
 
-	if ie.Contact == "" {
+	if re.Contact == "" {
 		return errors.New("contact details cannot be empty")
 	}
 
-	if ie.GSTNumber == "" {
+	if re.GSTNumber == "" {
 		return errors.New("GST number cannot be empty")
 	}
 
