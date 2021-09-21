@@ -12,12 +12,15 @@ import (
 // 	"id":"100",
 // 	"status":0,
 // 	"generalInfo":{
+//     "gst":"GST-1233445",
 // 	   "name":"Rail Warehouse Corporation",
 // 	   "phone": "9988776655",
 // 	   "email": "support.rwc.com",
 // 	   "address":"312/23 Bhanwandi, India",
 // 	   "details":"One of the best warehouse in north india.",
 // 	   "rate":8,
+//     "panalityAfterLimit": 5,
+//     "panalityPremature": 10,
 // 	   "totalArea":8000,
 // 	   "allocatedArea":0
 // 	},
