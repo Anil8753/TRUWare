@@ -60,12 +60,27 @@ func (s *WarehouseContract) PlaceOrder(
 		return fmt.Errorf("not enough space.\n requested: %d. available: %d", order.Space, available)
 	}
 
+	// Read customer identity details
+	ie, err := s.ReadOwnerIdentity(ctx)
+	if err != nil {
+		return err
+	}
+
 	// update order
 	order.Type = "order"
 	order.Status = Placed
+
 	order.CustomerId = identity
+	order.CustomerName = ie.Name
+	order.CustomerContact = ie.Contact
+	order.CustomerGST = ie.GSTNumber
+
 	order.WarehouseId = wh.Id
+	order.WarehouseName = wh.General.Name
+	order.WarehouseContact = wh.General.Phone
+	order.WarehouseGST = wh.General.GSTNumber
 	order.WarehouseOwnerId = wh.OwnerId
+
 	order.Rate = wh.General.Rate
 	order.Value = wh.General.Rate * float64(order.Space*order.Duration)
 	order.PanalityAfterLimit = wh.General.PanalityAfterLimit
