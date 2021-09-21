@@ -17,9 +17,13 @@
 
                 <div>Date: 23/12/2021</div>
                 <div>Txn No: {{order.id}}</div>
-                <div>Warehouse: {{order.warehouseId}}</div>
+                <div>Customer: {{order.customerName}}</div>
+                <div>Customer GST No: {{order.customerGST}}</div>
+                <div>Customer Contact: {{order.customerContact}}</div>
+
             </div>
             <div class="col-4">
+                <div>Warehouse: {{order.warehouseName}}</div>
                 <div>Amount: <b>{{order.value}} TW</b></div>
                 <div>Rate: {{order.rate}} per sqft</div>
                 <div>Duration: {{order.duration}} days</div>
