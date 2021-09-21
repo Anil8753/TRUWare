@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
@@ -15,6 +16,10 @@ func (s *WarehouseContract) CreateRegistration(
 	identity, _, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get identity. %v", err)
+	}
+
+	if _, err := s.ReadRegistration(ctx, identity); err == nil {
+		return errors.New("registration already done")
 	}
 
 	re := RegistrationEntry{}

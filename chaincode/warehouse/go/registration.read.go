@@ -28,7 +28,7 @@ func (s *WarehouseContract) ReadRegistration(
 
 	defer itr.Close()
 
-	if false == itr.HasNext() {
+	if !itr.HasNext() {
 		return nil, errors.New("registration entry not found")
 	}
 
