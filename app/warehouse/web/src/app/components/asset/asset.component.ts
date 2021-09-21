@@ -117,6 +117,9 @@ export class AssetComponent implements OnInit {
     if (this.asset.status == null || this.asset.status == undefined)
       return { status:false, message:`Please enter warehouse status`};
 
+    if (!this.asset.generalInfo.gst)
+      return { status:false, message:`Please enter GST number`};
+
     if (!this.asset.generalInfo.name)
       return { status:false, message:`Please enter warehouse name`};
 

@@ -13,6 +13,11 @@ then
 
 elif [[ $1 == 'up' ]]
 then
+    echo "---------------------  copy chaincode 'warehouse --------------------- "
+    ./copy_cc warehouse
+    echo "-copy chaincode done"
+    echo
+
     echo
     echo "------------------------------------------------------------------------------------------------"
     echo "Executing command: ./minifab up -e true -s couchdb -c mychannel -n warehouse -o admin.truware.com"
@@ -26,23 +31,23 @@ elif [[ $1 == 'down' ]]
 then
     echo
     echo "------------------------------------------------------"
-    echo "Executing command: ./minifab down"
+    echo "Executing command: ./minifab down -o admin.truware.com"
     echo "------------------------------------------------------"
     echo
 
     cd ../network
-    ./minifab down
+    ./minifab down -o admin.truware.com
 
 elif [[ $1 == 'cleanup' ]]
 then
     echo
-    echo "------------------------------------------------------"
-    echo "Executing command: ./minifab cleanup"
-    echo "------------------------------------------------------"
+    echo "---------------------------------------------------------"
+    echo "Executing command: ./minifab cleanup -o admin.truware.com"
+    echo "---------------------------------------------------------"
     echo
 
     cd ../network
-    ./minifab cleanup
+    ./minifab cleanup -o admin.truware.com
 
 else
     echo "Plese enter the command line"

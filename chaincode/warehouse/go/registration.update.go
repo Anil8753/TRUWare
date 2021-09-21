@@ -12,12 +12,12 @@ func (s *WarehouseContract) UpdateRegistration(
 	jsonStr string,
 ) error {
 
-	identity, _, err := GetInvokerIdentity(ctx)
+	_, _, err := GetInvokerIdentity(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to get identity. %v", err)
 	}
 
-	re, err := s.ReadRegistration(ctx, identity)
+	re, err := s.ReadRegistration(ctx)
 	if err != nil {
 		return fmt.Errorf("registration data not found. %v", err)
 	}

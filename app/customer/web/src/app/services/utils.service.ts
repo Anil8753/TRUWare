@@ -32,6 +32,19 @@ export class UtilsService {
 
     return null
   }
+
+  async getRegistration(): Promise<RegistrationData> {
+
+    try {
+      const url = `${this.baseUrl()}/api/registeration`;
+      const res = await this.http.get<any>(url).toPromise();
+      return JSON.parse(res.message) as RegistrationData;
+    } catch (e){
+      console.error(e);
+    }
+  
+    return null
+  }
 }
 
 export interface WalletEntry {
@@ -40,4 +53,13 @@ export interface WalletEntry {
   refNo: string;
 }
 
+export class RegistrationData {
+
+  id: string;
+  name: string;
+  address: string;
+  contact: string;
+  email: string;
+  gst:string;
+}
  

@@ -18,7 +18,7 @@ func (s *WarehouseContract) CreateRegistration(
 		return fmt.Errorf("failed to get identity. %v", err)
 	}
 
-	if _, err := s.ReadRegistration(ctx, identity); err == nil {
+	if _, err := s.ReadRegistration(ctx); err == nil {
 		return errors.New("registration already done")
 	}
 
@@ -32,6 +32,7 @@ func (s *WarehouseContract) CreateRegistration(
 		return fmt.Errorf("identity data validation failed. %v", err)
 	}
 
+	re.Type = "registration"
 	re.OwnerId = identity
 
 	bytes, err := json.Marshal(re)

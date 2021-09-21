@@ -10,13 +10,17 @@ import (
 
 func (s *WarehouseContract) ReadRegistration(
 	ctx contractapi.TransactionContextInterface,
-	identity string,
 ) (*RegistrationEntry, error) {
+
+	identity, _, err := GetInvokerIdentity(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get identity. %v", err)
+	}
 
 	queryFmt := `{
 		"selector": {
 			"type": "registration",
-			"identity": "%s"
+			"ownerId": "%s"
 		}
 	}`
 

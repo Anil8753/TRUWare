@@ -98,6 +98,8 @@ class OrderObject {
   id: string;
   type: string;
   warehouseId: string;
+  warehouseName: string;
+  warehouseGST:string;
   customerId: string;
   value: number;
   rate: number;

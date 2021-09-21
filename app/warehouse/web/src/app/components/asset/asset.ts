@@ -1,5 +1,6 @@
 
 export class GeneralInfo {
+    gst: string;
     name: string;
     phone: string;
     email: string;

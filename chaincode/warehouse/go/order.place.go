@@ -61,7 +61,7 @@ func (s *WarehouseContract) PlaceOrder(
 	}
 
 	// Read customer registration details
-	ie, err := s.ReadRegistration(ctx, identity)
+	ie, err := s.ReadRegistration(ctx)
 	if err != nil {
 		return err
 	}

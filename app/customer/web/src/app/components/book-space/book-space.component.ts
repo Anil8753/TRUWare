@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { UtilsService, WalletEntry } from 'src/app/services/utils.service';
+import { AccountComponent } from '../account/account.component';
 import { Order } from '../warehouse-card/order';
 import { Warehouse } from '../warehouse-card/warehouse';
 
@@ -24,6 +25,7 @@ export class BookSpaceComponent implements OnInit {
   cost: number;
 
   constructor(
+    private modalService: NgbModal,
     public activeModal: NgbActiveModal,
     private utils: UtilsService,
     private http: HttpClient,
@@ -70,6 +72,13 @@ export class BookSpaceComponent implements OnInit {
       if (!we) {
         this.spinner.hide();
         this.toast.error('Wallet is not available.', 'ERROR');
+        return;
+      }
+
+      const re = await this.utils.getRegistration();
+      if (!re) {
+        this.spinner.hide();
+        this.modalService.open(AccountComponent, { backdrop:'static'});
         return;
       }
 

@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from 'src/app/services/utils.service';
-import { faWallet, faMoneyCheck } from '@fortawesome/free-solid-svg-icons';
+import { faWallet, faMoneyCheck, faUser } from '@fortawesome/free-solid-svg-icons';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { WalletComponent } from '../wallet/wallet.component';
 import { TransactionsComponent } from '../transactions/transactions.component';
+import { AccountComponent } from '../account/account.component';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   walletIcon = faWallet;
   txnIcon = faMoneyCheck;
+  profileIcon = faUser;
 
   identity: Identity;
 
@@ -45,6 +47,10 @@ export class HomeComponent implements OnInit {
   
   onShowTransactions() {
     this.modalService.open(TransactionsComponent, { backdrop:'static', size: 'lg'});
+  }
+
+  onUserProfile() {
+    this.modalService.open(AccountComponent, { backdrop:'static'});
   }
 }
 

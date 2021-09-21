@@ -10,6 +10,13 @@
     <div class="form">
         <small class="text-muted">General details</small>
         <div class="form-row">
+            <div class="form-group col-md-12">
+                <input type="text" class="form-control form-control-sm" placeholder="Enter GST number"
+                    [(ngModel)]="asset.generalInfo.gst" is-invalid required>
+            </div>
+        </div>
+
+        <div class="form-row">
             <div class="form-group col-md-8">
                 <input type="text" class="form-control form-control-sm" placeholder="Warehouse Name"
                     [(ngModel)]="asset.generalInfo.name" is-invalid required>

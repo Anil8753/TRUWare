@@ -3,6 +3,7 @@ package main
 import "errors"
 
 type RegistrationEntry struct {
+	Type      string `json:"type"`
 	ID        string `json:"id"`
 	OwnerId   string `json:"ownerId"`
 	Name      string `json:"name"`
