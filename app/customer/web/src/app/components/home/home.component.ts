@@ -33,6 +33,18 @@ export class HomeComponent implements OnInit {
 
   async init() {
     this.identity = (await this.initProfile());
+    this.initRegistrationData();
+  }
+
+  async initRegistrationData() {
+  
+      const re = await this.utils.getRegistration();
+      if (re) {
+        this.identity.Name = re.name;
+      } else {
+        console.debug('registration data not available, err');
+        this.identity = (await this.initProfile());
+      }
   }
 
   async initProfile() {

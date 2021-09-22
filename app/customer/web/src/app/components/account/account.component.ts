@@ -55,7 +55,7 @@ export class AccountComponent implements OnInit {
 
     this.spinner.show();
     this.regData.id = this.utils.getUUID();
-    const url = `${this.utils.baseUrl()}/api/registeration`;
+    const url = `${this.utils.baseUrl()}/api/registration`;
   
     this.http.post(url, this.regData)
     .subscribe(res=>{
@@ -79,7 +79,7 @@ export class AccountComponent implements OnInit {
     }
 
     this.spinner.show();
-    const url = `${this.utils.baseUrl()}/api/registeration`;
+    const url = `${this.utils.baseUrl()}/api/registration`;
   
     this.http.put(url, this.regData)
     .subscribe(res=>{

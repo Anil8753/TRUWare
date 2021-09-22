@@ -36,7 +36,7 @@ export class UtilsService {
   async getRegistration(): Promise<RegistrationData> {
 
     try {
-      const url = `${this.baseUrl()}/api/registeration`;
+      const url = `${this.baseUrl()}/api/registration`;
       const res = await this.http.get<any>(url).toPromise();
       return JSON.parse(res.message) as RegistrationData;
     } catch (e){
