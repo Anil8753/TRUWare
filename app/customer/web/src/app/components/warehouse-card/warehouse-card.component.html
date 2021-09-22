@@ -2,20 +2,40 @@
     <div class="card-body">
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-4">
                 <div class="heading" ng-if="warehouse.generalInfo.name">{{warehouse.generalInfo.name}}</div>
                 <div ng-if="warehouse.generalInfo.phone"> <span>Phone: </span> {{warehouse.generalInfo.phone}}</div>
                 <div ng-if="warehouse.generalInfo.email"> <span>Email: </span> {{warehouse.generalInfo.email}}</div>
                 <div><span>Address: </span> {{warehouse.generalInfo.address}}</div>
             </div>
 
-            <div class="col-4">
-                <div><span>Rate: </span> {{warehouse.generalInfo.rate}} Rs per sqft</div>
-                <div> <span>Total Area: </span> {{warehouse.generalInfo.totalArea}} sqft</div>
+            <div class="col-2" style="text-align: left;">
                 <div>
-                    <span>Available Area: </span>{{warehouse.generalInfo.totalArea -
-                    warehouse.generalInfo.allocatedArea}}
+                    <div><span>Rate: </span> {{warehouse.generalInfo.rate}} Rs per sqft</div>
+                    <div> <span>Total Area: </span> {{warehouse.generalInfo.totalArea}} sqft</div>
+                    <div>
+                        <span>Available Area: </span>{{warehouse.generalInfo.totalArea -
+                        warehouse.generalInfo.allocatedArea}}
+                    </div>
                 </div>
+            </div>
+
+            <div class="col-3" style="text-align: center;">
+                <div class="heading1">Humidity & temp control</div>
+                <div class="mt-2">
+                    <fa-icon class="text-warning" [icon]="iconTemp" size="lg"></fa-icon>
+                    0℃-24℃ 
+                </div>
+                <div class="mt-2">
+                    <fa-icon class="text-warning" [icon]="iconHumidity" size="lg"></fa-icon>
+                    30%-60%
+                </div>
+            </div>
+
+            <div class="col-1" style="text-align: center;">
+                <div class="">Location</div>
+                <div class="btn mt-1" (click)="openMap(mapcontent)"><fa-icon class="text-danger" [icon]="iconLocation" size="2x"></fa-icon></div>
+                
             </div>
 
             <div class="col-2">
@@ -36,7 +56,19 @@
                         Space</button>
                 </div>
             </div>
-
-
         </div>
     </div>
+
+    <!-------------  map ------------>
+    <ng-template #mapcontent let-modal>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic-title">Warehouse map</h6>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="assets/img/warehouse_map.png" width="100%" height="100%">
+        </div>
+      </ng-template>
+      
