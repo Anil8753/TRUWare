@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"strconv"
@@ -51,6 +52,10 @@ func (s *WarehouseContract) PlaceOrder(
 		return fmt.Errorf("invalid requested space: %d", order.Space)
 	}
 
+	if order.Date == "" {
+		return errors.New("order date cannot be empty")
+	}
+
 	if order.Duration <= 0 {
 		return fmt.Errorf("invalid requested duration: %d", order.Space)
 	}
@@ -61,7 +66,7 @@ func (s *WarehouseContract) PlaceOrder(
 	}
 
 	// Read customer registration details
-	ie, err := s.ReadRegistration(ctx)
+	re, err := s.ReadRegistration(ctx)
 	if err != nil {
 		return err
 	}
@@ -71,9 +76,9 @@ func (s *WarehouseContract) PlaceOrder(
 	order.Status = Placed
 
 	order.CustomerId = identity
-	order.CustomerName = ie.Name
-	order.CustomerContact = ie.Contact
-	order.CustomerGST = ie.GSTNumber
+	order.CustomerName = re.Name
+	order.CustomerContact = re.Contact
+	order.CustomerGST = re.GSTNumber
 
 	order.WarehouseId = wh.Id
 	order.WarehouseName = wh.General.Name

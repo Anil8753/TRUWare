@@ -19,6 +19,7 @@ type Order struct {
 	Value              float64 `json:"value"`
 	Rate               float64 `json:"rate"`
 	Space              int     `json:"space"`
+	Date               string  `json:"date"`
 	Duration           int     `json:"duration"`
 	PanalityAfterLimit float64 `json:"panalityAfterLimit"`
 	PanalityPremature  float64 `json:"panalityPremature"`
