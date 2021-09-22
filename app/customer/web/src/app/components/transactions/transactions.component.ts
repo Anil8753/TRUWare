@@ -101,6 +101,7 @@ class OrderObject {
   warehouseName: string;
   warehouseGST:string;
   customerId: string;
+  date:string;
   value: number;
   rate: number;
   space: number;
