@@ -137,10 +137,11 @@
 </div>
 <div class="modal-footer">
 
-    <h5 class="mr-3">Total cost: {{duration*space*warehouse.generalInfo.rate}} TW Tokens </h5>
+    <h5 *ngIf="duration > 0 && space > 0" class="mr-3">Total cost: {{duration*space*warehouse.generalInfo.rate}} TW
+        Tokens </h5>
 
     <button type="button" class="btn btn-outline-primary btn-sm" (click)="bookSpace()">Book
         Space</button>
-    <button type="button" class="btn btn-outline-danger btn-sm"
+    <button type="button" class="btn btn-outline-secondary btn-sm"
         (click)="activeModal.close('Close click')">Close</button>
 </div>
