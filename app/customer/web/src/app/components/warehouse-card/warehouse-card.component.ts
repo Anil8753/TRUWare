@@ -36,7 +36,7 @@ export class WarehouseCardComponent implements OnInit {
   }
 
   bookSpace() {
-    const modalRef = this.modalService.open(BookSpaceComponent, { backdrop: 'static'});
+    const modalRef = this.modalService.open(BookSpaceComponent, { backdrop: 'static', size: 'lg'});
     modalRef.componentInstance.warehouse = this.warehouse;
   }
 }

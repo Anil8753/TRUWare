@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Book Warehouse Space</h4>
+    <h6 class="modal-title">Book Warehouse Space</h6>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -8,55 +8,137 @@
     <!-- <small class="text-muted">Order details</small>
     <hr> -->
     <div class="form-row">
-        <div class="form-group col-md-4">
-            <small class="text-muted">Required space (sqft)</small>
-            <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter space sqft"
-                [(ngModel)]="space" is-invalid required>
+        <div class="col-7">
+            <div class="bg-light p-3">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <small class="text-muted">Required space (sqft)</small>
+                        <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter space sqft"
+                            [(ngModel)]="space" is-invalid required>
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        <small class="text-muted">Start Date</small>
+                        <input type="date" class="form-control form-control-sm" placeholder="Enter duration"
+                            [(ngModel)]="date" is-invalid required>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <small class="text-muted">Duration (days)</small>
+                        <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter duration"
+                            [(ngModel)]="duration" is-invalid required>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <small class="text-muted">Enter comments</small>
+                        <input class="form-control form-control-sm" placeholder="Enter comments" [(ngModel)]="comments"
+                            is-invalid required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group col-md-12">
+                        <span>
+                            Space rate: <b>{{warehouse.generalInfo.rate}} sqft per day</b>
+                        </span>
+                        <br>
+                        <span>
+                            Total cost: <b>{{duration*space*warehouse.generalInfo.rate}} TW Token </b> (1 INR = 1 TW
+                            Token)
+                        </span>
+                        <br>
+                        <span>
+                            Premature cancellation charges: <b>{{warehouse.generalInfo.panalityPremature}}% </b>will be
+                            deducted
+                        </span>
+                        <br>
+                        <span>
+                            Post end date charges: <b>{{warehouse.generalInfo.panalityAfterLimit}}%</b>of current rate
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group col-md-4">
-            <small class="text-muted">Start Date</small>
-            <input type="date" class="form-control form-control-sm" placeholder="Enter duration" [(ngModel)]="date"
-                is-invalid required>
-        </div>
+        <div class="col-5">
+            <div class="bg-light p-3">
+                <span>
+                    <b>Prefered Logistics Partners</b>
+                </span>
 
-        <div class="form-group col-md-4">
-            <small class="text-muted">Duration (days)</small>
-            <input type="number" min="0" class="form-control form-control-sm" placeholder="Enter duration"
-                [(ngModel)]="duration" is-invalid required>
-        </div>
+                <div class="d-flex flex-column">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Ayanya Movers
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Samraddhi Logistics Ltd
+                        </label>
+                    </div>
 
-        <div class="form-group col-md-12">
-            <small class="text-muted">Enter comments</small>
-            <input class="form-control form-control-sm" placeholder="Enter comments" [(ngModel)]="comments" is-invalid
-                required>
-        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault3">
+                            Innovative Logistics
+                        </label>
+                    </div>
 
-    </div>
+                    <div class="align-self-end">
+                        <button class="btn btn-link btn-sm" style="font-size: 13px;font-style: italic;">Other logistics
+                            partners</button>
+                    </div>
+                </div>
+            </div>
 
-    <div class="form-row">
+            <div class="bg-light p-3 mt-2">
+                <span>
+                    <b>Prefered Insurance Partners</b>
+                </span>
 
-        <div class="form-group col-md-12">
-            <span>
-                Space rate: <b>{{warehouse.generalInfo.rate}} sqft per day</b>
-            </span>
-            <br>
-            <span>
-                Total cost: <b>{{duration*space*warehouse.generalInfo.rate}} TW Token </b> (1 INR = 1 TW Token)
-            </span>
-            <br>
-            <span>
-                Premature cancellation charges: <b>{{warehouse.generalInfo.panalityPremature}}% </b>will be deducted
-            </span>
-            <br>
-            <span>
-                Post end date charges: <b>{{warehouse.generalInfo.panalityAfterLimit}}%</b>of current rate
-            </span>
+                <div class="d-flex flex-column">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                        <label class="form-check-label" for="flexRadioDefault4">
+                            Kotek General Insurance Co.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault5">
+                            MICCO Insurance Ltd
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault5">
+                            LMFC Insurance Company
+                        </label>
+                    </div>
+
+                    <!-- <div class="align-self-end">
+                        <button class="btn btn-link btn-sm" style="font-size: 12px;font-style: italic;">Other Insurance
+                            partners</button>
+                    </div> -->
+                </div>
+            </div>
         </div>
     </div>
 
 </div>
 <div class="modal-footer">
+
+    <h5 class="mr-3">Total cost: {{duration*space*warehouse.generalInfo.rate}} TW Tokens </h5>
+
     <button type="button" class="btn btn-outline-primary btn-sm" (click)="bookSpace()">Book
         Space</button>
     <button type="button" class="btn btn-outline-danger btn-sm"
