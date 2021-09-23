@@ -38,6 +38,5 @@ func (h *Handler) CancelOrder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("cancel order req DONEEEE")
 	httputils.HttpResponse(w, string(result), http.StatusOK)
 }
