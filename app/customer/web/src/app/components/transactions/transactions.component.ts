@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'ngx-angular8-sweetalert2'
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -49,9 +50,27 @@ export class TransactionsComponent implements OnInit {
 
   onCancelBooking(orderId: string) {
 
-    if(!confirm(`Are you sure to cancel the booking. \n order id: ${orderId}`)) {
-      return;
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this! This cancellation may cause the associated penalities",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, cancel the order!',
+      customClass: {
+        title: 'swl-btn-h',
+        content: 'swl-btn-c',
+        confirmButton: 'swl-btn-b',
+        cancelButton: 'swl-btn-b',
+      }
+    }).then((result) => {
+      if (result.value) {
+       this.doCancelBooking(orderId);
+      }
+    });
+  }
+
+  private doCancelBooking(orderId: string) {
 
     this.spinner.show();
 
@@ -60,6 +79,7 @@ export class TransactionsComponent implements OnInit {
     this.http.put<any>(url, data)
     .subscribe(res=>{
       this.spinner.hide();
+      this.toast.success('Succesfully cancelled the order.', 'SUCCESS');
       this.init();
     },
     err=>{
@@ -67,7 +87,6 @@ export class TransactionsComponent implements OnInit {
       this.toast.error('Failed to cancel the order.', 'ERROR');
       console.error(err);
     });
-
   }
 
   getStatusLabel(status: number) {
