@@ -6,9 +6,11 @@
                 <div class="form-row">
                     <span class="text-muted">Search by location</span>
                     <div class="col-12">
-                        <input type="text" class="form-control form-control-sm input-f" placeholder="Enter location">
+                        <input type="text" class="form-control form-control-sm input-f" placeholder="Enter location"
+                            [(ngModel)]="address">
                     </div>
-                    <button type="button" class="btn btn-link btn-sm action-btn">Search</button>
+                    <button type="button" class="btn btn-link btn-sm action-btn"
+                        (click)="onFilterByAddress()">Search</button>
                 </div>
 
 
@@ -22,7 +24,7 @@
                         <span class="fa fa-star checked star"></span>
                         <span class="fa fa-star checked star"></span>
                         <span class="fa fa-star star"></span>
-                        <a href="" class="star-btn">& Up</a>
+                        <a href="javascript:void()" class="star-btn" (click)="onFilterByRating(4)">& Up</a>
                     </div>
 
                     <div>
@@ -31,7 +33,7 @@
                         <span class="fa fa-star star checked"></span>
                         <span class="fa fa-star star"></span>
                         <span class="fa fa-star star"></span>
-                        <a href="" class="star-btn">& Up</a>
+                        <a href="javascript:void()" class="star-btn" (click)="onFilterByRating(3)">& Up</a>
                     </div>
 
                     <div>
@@ -40,7 +42,7 @@
                         <span class="fa fa-star star"></span>
                         <span class="fa fa-star star"></span>
                         <span class="fa fa-star star"></span>
-                        <a href="" class="star-btn">& Up</a>
+                        <a href="javascript:void()" class="star-btn" (click)="onFilterByRating(2)">& Up</a>
                     </div>
 
                     <div>
@@ -49,7 +51,7 @@
                         <span class="fa fa-star star"></span>
                         <span class="fa fa-star star"></span>
                         <span class="fa fa-star star"></span>
-                        <a href="" class="star-btn">& Up</a>
+                        <a href="javascript:void()" class="star-btn" (click)="onFilterByRating(1)">& Up</a>
                     </div>
                 </div>
 
@@ -76,31 +78,38 @@
                     <span class="text-muted">Between price range</span>
                     <div class="col-12">
                         <input type="number" min="0" class="form-control form-control-sm input-f"
-                            placeholder="Start rate">
+                            placeholder="Start rate" [(ngModel)]="fromRate">
                     </div>
                     <div class="col-12 mt-1">
-                        <input type="number" min="0" class="form-control form-control-sm input-f"
-                            placeholder="End rate">
+                        <input type="number" min="0" class="form-control form-control-sm input-f" placeholder="End rate"
+                            [(ngModel)]="toRate">
                     </div>
-                    <button type="button" class="btn btn-link btn-sm action-btn">Search</button>
+                    <button type="button" class="btn btn-link btn-sm action-btn"
+                        (click)="onFilterByRateRange()">Search</button>
                 </div>
 
                 <hr>
 
                 <div class="form-row">
-                    <span class="text-muted">Between space range</span>
+                    <span class="text-muted">Search by min space</span>
                     <div class="">
                         <input type="number" min="0" class="form-control form-control-sm input-f"
-                            placeholder="Starting space">
+                            placeholder="Enter space sqft" [(ngModel)]="space">
                     </div>
-                    <div class="mt-1">
-                        <input type="number" min="0" class="form-control form-control-sm input-f"
-                            placeholder="Max space">
-                    </div>
-                    <button type="button" class="btn btn-link btn-sm action-btn">Search</button>
+                    <button type="button" class="btn btn-link btn-sm action-btn" (click)="onFilterBySpace()">
+                        Search</button>
                 </div>
 
-                <!-- <hr> -->
+                <hr>
+
+                <div *ngIf="hasFilter" class="form-row">
+                    <!-- <span>{{currFilter}}</span> -->
+                    <button class="btn btn-link btn-sm clear-f-btn" (click)="onClearFilter()">
+                        <fa-icon [icon]="iconClearFilter"></fa-icon>
+                        Clear Filter
+                    </button>
+                </div>
+
 
             </div>
         </div>

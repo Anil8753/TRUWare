@@ -1,4 +1,4 @@
-<div class="d-flex flex-column h-100">
+<div class="d-flex flex-column">
 
     <div class="">
         <div *ngFor="let wh of warehouses">
@@ -7,7 +7,7 @@
     </div>
 
 
-    <div class="p-2 flex-grow-1 grow-p">
+    <div class="p-2 flex-grow-1 grow-p" *ngIf="warehouses.length < 3">
         <div class="d-flex justify-content-center">
             <fa-icon [icon]="emptyIcon" style="font-size: 128px;"></fa-icon>
             <fa-icon [icon]="emptyIcon" style="font-size: 128px;"></fa-icon>
@@ -16,5 +16,9 @@
         </div>
     </div>
 
+    <div style="text-align: right;" class="m-2">
+        <span *ngIf="hasFilter">Search Results: {{warehouses.length}}&nbsp;&nbsp;|&nbsp;</span>
+        <span>Total warehouses: {{masterList.length}}</span>
+    </div>
 
 </div>
