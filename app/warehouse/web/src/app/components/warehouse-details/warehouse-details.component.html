@@ -13,8 +13,20 @@
 
             <div class="card detail-card">
                 <div class="card-body">
-                    <span class="heading">Details: </span>
-                    <div>{{asset.generalInfo.details}}</div>
+                    <div class="row">
+                        <div class="col-10">
+                            <span class="heading">Details: </span>
+                            <div>{{asset.generalInfo.details}}</div>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-outline-primary btn-sm galley-btn"
+                                (click)="onPhotoGallary(asset.Id)">Photo
+                                Gallary</button>
+                            <button type="button" class="btn btn-outline-primary btn-sm galley-btn mt-2"
+                                (click)="onVideoGallary(asset.Id)">Video
+                                Gallary</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

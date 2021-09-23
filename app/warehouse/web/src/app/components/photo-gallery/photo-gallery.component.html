@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h6 class="modal-title">Photo Gallary</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+
+    <div class="d-flex mb-3">
+        <button type="button" class="btn btn-outline-info btn-sm galley-btn">Upload New Photos</button>
+        <button type="button" class="btn btn-outline-info btn-sm galley-btn ml-2">Remove Photos</button>
+    </div>
+
+    <ngb-carousel *ngIf="images" class="bg-warning" style="text-align: center;">
+        <ng-template ngbSlide *ngFor="let image of images">
+            <div class="picsum-img-wrapper">
+                <img [src]="image">
+            </div>
+            <div class="carousel-caption">
+            </div>
+        </ng-template>
+
+    </ngb-carousel>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary btn-sm" (click)="modal.dismiss('Cross click')">Close</button>
+</div>

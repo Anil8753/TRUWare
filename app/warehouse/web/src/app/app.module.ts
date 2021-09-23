@@ -23,6 +23,8 @@ import { RatingsComponent } from './components/ratings/ratings.component';
 import { SensorsComponent } from './components/sensors/sensors.component';
 import { WalletComponent } from './components/wallet/wallet.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
+import { PhotoGalleryComponent } from './components/photo-gallery/photo-gallery.component';
+import { VideoGalleryComponent } from './components/video-gallery/video-gallery.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { TransactionsComponent } from './components/transactions/transactions.co
     SensorsComponent,
     WalletComponent,
     TransactionsComponent,
+    PhotoGalleryComponent,
+    VideoGalleryComponent,
   ],
   imports: [
     BrowserModule,
