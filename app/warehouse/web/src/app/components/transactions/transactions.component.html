@@ -15,7 +15,7 @@
                 <div *ngIf="order.status === 4">Status: <span
                         class="text-danger">{{getStatusLabel(order.status)}}</span></div>
 
-                <div>Date: 23/12/2021</div>
+                <div>Date: {{order.date}}</div>
                 <div>Txn No: {{order.id}}</div>
                 <div>Customer: {{order.customerName}}</div>
                 <div>Customer GST No: {{order.customerGST}}</div>
