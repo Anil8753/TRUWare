@@ -4,7 +4,9 @@ fabric:
     - "ca1.crwc.truware.com"
   peers:
     - "peer1.admin.truware.com"
+    - "peer2.admin.truware.com"
     - "peer1.crwc.truware.com"
+    - "peer2.crwc.truware.com"
   orderers:
     - "orderer1.truware.com"
     - "orderer2.truware.com"

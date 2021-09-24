@@ -1,4 +1,4 @@
-<div *ngIf="asset">
+<div *ngIf="asset" class="w-container">
     <div class="row no-gutters" ng-if="asset && asset.generalInfo">
 
         <div class="col-8">
@@ -32,9 +32,20 @@
 
             <div class="card detail-card">
                 <div class="card-body">
-                    <div><span>Rate: </span> {{asset.generalInfo.rate}} Rs per sqft</div>
-                    <div> <span>Total Area: </span> {{asset.generalInfo.totalArea}} sqft</div>
-                    <div> <span>Allocated Area: </span>{{asset.generalInfo.allocatedArea}}</div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div><span>Rate: </span> {{asset.generalInfo.rate}} Rs per sqft</div>
+                            <div> <span>Total Area: </span> {{asset.generalInfo.totalArea}} sqft</div>
+                            <div> <span>Allocated Area: </span>{{asset.generalInfo.allocatedArea}}</div>
+                        </div>
+                        <div class="col-6 border-left">
+                            <div><span>Prematurity closer penality: </span> {{asset.generalInfo.panalityPremature}}%
+                            </div>
+                            <div> <span>Per day penality after end date: </span>
+                                {{asset.generalInfo.panalityAfterLimit}}%
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -46,7 +57,7 @@
 
         </div>
 
-        <div class="col-4 pl-3">
+        <div class="col-4 pl-2">
 
             <div class="card detail-card">
                 <div class="card-body">

@@ -12,7 +12,7 @@ export class GmapsComponent implements OnInit {
 
   center: google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
-    mapTypeId: 'hybrid',
+    mapTypeId: 'roadmap',
     zoomControl: true,
     scrollwheel: false,
     disableDoubleClickZoom: true,

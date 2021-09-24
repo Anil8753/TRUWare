@@ -1,5 +1,5 @@
 .detail-card {
-    margin-bottom: 12px;
+    margin-bottom: 7px;
     border-radius: 5px;
     box-shadow: white;
 }
@@ -12,4 +12,10 @@
 .galley-btn {
   font-size: 10px;
   font-weight: bold;
+}
+
+.w-container {
+  background-image: linear-gradient(rgb(19, 61, 85), white);
+  padding: 10px;
+  border-radius: 5px;
 }
